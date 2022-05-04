@@ -1,26 +1,16 @@
-.. _style-guide-enforcement:
-
 Style Guide Enforcement
 =======================
-This topic describes the use of `Flake8`_ for `PEP8`_ style
+This topic describes the use of `flake8`_ for `PEP 8`_ style
 enforcement and the minimum standards expected. PyAnsys libraries
 are expected to be consistent with these guidelines.
 
-.. _PEP8: https://www.python.org/dev/peps/pep-0008/
-
 Flake8
 ~~~~~~
-`Flake8`_ is a Python tool for enforcing code styling. It is a wrapper
-around the following three tools: `PyFlakes`_, `pycodestyle`_, and
-`Ned Batchelder's McCabe script for complexity`_. Flake8 runs all three tools at once,
-checking the code against a variety of style rules, such as line length,
-code complexity, and whitespace.
-
-.. _Flake8: https://flake8.pycqa.org/en/latest/index.html
-.. _PyFlakes: https://pypi.org/project/pyflakes/
-.. _pycodestyle: https://pypi.org/project/pycodestyle/
-.. _`Ned Batchelder's McCabe script for complexity`: https://github.com/PyCQA/mccabe
-.. _configuring-flake8:
+`Flake8`_ is a Python tool for enforcing code styling. It is a wrapper around
+the following three tools: `PyFlakes`_, `pycodestyle`_, and `Ned Batchelder's
+McCabe script for complexity`, also known as `mccabe`_. Flake8 runs all three
+tools at once, checking the code against a variety of style rules, such as line
+length, code complexity, and whitespace.
 
 Configuring Flake8
 ------------------
@@ -44,8 +34,7 @@ library:
     statistics = True
 
 Flake8 has many options that can be set within the configuration file.
-For a list and descriptions, see this `Flake8 documentation topic
-<https://flake8.pycqa.org/en/latest/user/options.html>`__.
+For a list and descriptions, see this `Flake8 documentation topic`_.
 
 The example configuration defines the following options:
 
@@ -59,7 +48,7 @@ The example configuration defines the following options:
     check for and is not an exhaustive list.
 
     For a full list of error codes and their descriptions, see this `Flake8
-    documentation topic <https://flake8.pycqa.org/en/3.9.2/user/error-codes.html>`__.
+    documentation topic`_
 
 - ``count``
     Total number of errors to print at the end of the check.
@@ -70,7 +59,7 @@ The example configuration defines the following options:
 
 - ``max-line-length``
     Denotes the maximum line length for any one line of code.
-    The `PEP8`_ standard advises a maximum line length of 79. Because
+    The `PEP 8`_ standard advises a maximum line length of 79. Because
     this is a bit limiting in some cases, the maximum line length
     recommended for a PyAnsys library is 100.
 
@@ -106,25 +95,21 @@ base.
 Utilizing Black
 ~~~~~~~~~~~~~~~
 Manually checking for code styling can be a tedious task. Luckily,
-several Python tools for auto-formatting code to meet PEP8 standards
+several Python tools for auto-formatting code to meet `PEP 8`_ standards
 are available to help with this. The PyAnsys project suggests the use of the
 the formatting tool `black`_.
 
 On completing a code change, and before committing, `black`_ can be
-run to reformat the code, following the PEP8 guidelines enforced through
-Flake8. This will limit any manual code changes needed to address style
+run to reformat the code, following the `PEP 8`_ guidelines enforced through
+`flake8`_. This will limit any manual code changes needed to address style
 rules.
 
-.. _black: https://black.readthedocs.io/en/stable/
 
 Optionally, it is possible to automate the use of `black`_. This can be
-done with the tool `pre-commit`_. Setting up a `pre-commit hook
-to run black <https://black.readthedocs.io/en/stable/integrations/source_version_control.html>`_
+done with the tool `pre-commit`_. Setting up a `pre-commit hook to run black`_
 will automatically format the code before committing. This simple way of
 incorporating code style checks into the development workflow to maintain
-PEP8 guidelines requires minimal manual effort.
-
-.. _pre-commit: https://pre-commit.com/
+`PEP 8`_ guidelines requires minimal manual effort.
 
 
 Minimum Standards
@@ -194,12 +179,11 @@ expected in a PyAnsys library.
 
 * `E501`_ - **Line too long.**
 
-    All code lines should not exceed 100 characters. The
-    `PEP8 line length guideline <https://www.python.org/dev/peps/pep-0008/#maximum-line-length>`_
-    suggests a maximum line length of 79. Following this limit
-    is not as necessary today due to modern screen sizes. The suggested maximum
-    length of 100 can be easier to accommodate and can still support
-    viewing files side by side in code editors.
+    All code lines should not exceed 100 characters. The `PEP8 line length
+    guideline`_ suggests a maximum line length of 79. Following this limit is
+    not as necessary today due to modern screen sizes. The suggested maximum
+    length of 100 can be easier to accommodate and can still support viewing
+    files side by side in code editors.
 
 * `F401`_ - **Module imported but unused.**
 
@@ -215,7 +199,7 @@ expected in a PyAnsys library.
 * **Limit complexity of code to 10.**
 
   This is enforced by the ``max-complexity`` option described in
-  :ref:`configuring-flake8`. Limiting code complexity leads to code that
+  :ref:`PEP 8 Best Practices`. Limiting code complexity leads to code that
   is easier to understand and less risky to modify. Write low-
   complexity code when possible.
 
@@ -233,20 +217,8 @@ Your ``.flake8`` file should be:
     statistics = True
 
 
-.. _W191: https://www.flake8rules.com/rules/W191.html
-.. _W291: https://www.flake8rules.com/rules/W291.html
-.. _W293: https://www.flake8rules.com/rules/W293.html
-.. _W391: https://www.flake8rules.com/rules/W391.html
-.. _E115: https://www.flake8rules.com/rules/E115.html
-.. _E117: https://www.flake8rules.com/rules/E117.html
-.. _E122: https://www.flake8rules.com/rules/E122.html
-.. _E124: https://www.flake8rules.com/rules/E124.html
-.. _E125: https://www.flake8rules.com/rules/E125.html
-.. _E225: https://www.flake8rules.com/rules/E225.html
-.. _E231: https://www.flake8rules.com/rules/E231.html
-.. _E301: https://www.flake8rules.com/rules/E301.html
-.. _E303: https://www.flake8rules.com/rules/E303.html
-.. _E501: https://www.flake8rules.com/rules/E501.html
-.. _F401: https://www.flake8rules.com/rules/F401.html
-.. _F403: https://www.flake8rules.com/rules/F403.html
-
+.. REFERENCES AND LIKNS
+.. include:: ../links.rst
+.. _Flake8 documentation topic: https://flake8.pycqa.org/en/3.9.2/user/error-codes.html
+.. _PEP8 line length guideline: https://www.python.org/dev/peps/pep-0008/#maximum-line-length
+.. _pre-commit hook to run black: https://black.readthedocs.io/en/stable/integrations/source_version_control.html

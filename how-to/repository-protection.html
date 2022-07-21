@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Repository protection &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Packaging style" href="../packaging/index.html" />
+    <link rel="prev" title="Releasing and publishing" href="releasing.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../overview/index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../doc-style/index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">How-To</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Repository protection</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setting-up.html">
+   Setting up your development environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-python-versions.html">
+   Supporting Python versions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="packaging.html">
+   Packaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="documenting.html">
+   Documenting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous-integration.html">
+   Using continuous integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="releasing.html">
+   Releasing and publishing
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Repository protection
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-configuration">
+   General configuration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#branch-protection">
+   Branch protection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tag-protection">
+   Tag protection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#workflow-protection">
+   Workflow protection
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="repository-protection">
+<h1>Repository protection<a class="headerlink" href="#repository-protection" title="Permalink to this headline">#</a></h1>
+<p>Handling repositories also implies handling sensitive information, especially
+when looking into workflows. Access to private servers to acquire Ansys product
+licenses, secrets handling and so on. Thus, it is important that the PyAnsys
+libraries have good protection rules implemented.</p>
+<p>In the following sections, different safety measures are presented.</p>
+<section id="general-configuration">
+<h2>General configuration<a class="headerlink" href="#general-configuration" title="Permalink to this headline">#</a></h2>
+<p>Being an owner/admin of a repository gives you access to the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> menu.
+One accesses the <em>General configuration</em> of the repository by:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Repository</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Settings</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">General</span></code></p>
+</div></blockquote>
+<p>The PyAnsys team recommends the following measures in the <strong>Pull Requests</strong> (PRs) section:</p>
+<ul class="simple">
+<li><p><strong>Only allow for</strong> <code class="docutils literal notranslate"><span class="pre">Squash</span> <span class="pre">merging</span></code>: this option forces all commits of a PR
+to be condensed into a single commit. That way, in case a PR was not successful
+for some reason, or wants to be reverted, it is easier to just revert that commit.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Default</span> <span class="pre">to</span> <span class="pre">PR</span> <span class="pre">title</span> <span class="pre">for</span> <span class="pre">squash</span> <span class="pre">merge</span> <span class="pre">commits</span></code> <strong>checkbox</strong>:
+this provides a uniform way of naming PRs and merging them to the main branch.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Always</span> <span class="pre">suggest</span> <span class="pre">updating</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">branches</span></code> <strong>checkbox</strong>:
+though this can be enforced (as it is explained in upcoming sections), it is
+recommended to always have your branch updated to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch before merging.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Automatically</span> <span class="pre">delete</span> <span class="pre">head</span> <span class="pre">branches</span></code> <strong>checkbox</strong>: this is more
+intended for cleaning purposes. Once a PR is merged into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, the
+PR-related branch should be deleted so that only active branches are available in
+the repository.</p></li>
+</ul>
+</section>
+<section id="branch-protection">
+<h2>Branch protection<a class="headerlink" href="#branch-protection" title="Permalink to this headline">#</a></h2>
+<p>Branch protection is critical in terms of avoiding malicious code insertion and access
+to confidential data. If one accesses:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Repository</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Settings</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">and</span> <span class="pre">automation</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Branches</span></code></p>
+</div></blockquote>
+<p>You are presented with the Branch protection menu. On the <code class="docutils literal notranslate"><span class="pre">Branch</span> <span class="pre">protection</span>
+<span class="pre">rules</span></code> please click on the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">rule</span></code> button.</p>
+<p>On the <code class="docutils literal notranslate"><span class="pre">Branch</span> <span class="pre">name</span> <span class="pre">pattern</span></code> box, one should include the name of the branch
+to be protected (usually <code class="docutils literal notranslate"><span class="pre">main</span></code>, but one could also protect other branches,
+such as <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code>). Regular expressions (also known as <code class="docutils literal notranslate"><span class="pre">regex</span></code>) are also
+accepted (for example, if protection on all <code class="docutils literal notranslate"><span class="pre">release/*</span></code> branches is wanted).</p>
+<p>The PyAnsys team recommends to set the following rules for the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch:</p>
+<ul class="simple">
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">a</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">before</span> <span class="pre">merging</span></code> <strong>checkbox</strong>: that way,
+no one (except for owners/admins) should be able to directly merge to <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">approvals</span></code> <strong>checkbox</strong>: this ensures
+that all PRs are reviewed and nobody goes <em>riding solo</em> (again, except for owners).</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">review</span> <span class="pre">from</span> <span class="pre">Code</span> <span class="pre">Owners</span></code> <strong>checkbox</strong>: this is intended for
+workflow protection as well. That way, it is ensured that no malicious code is
+merged into the main branch. Code owners should be capable of identifying pieces
+of code which should not be allowed, though it forces them to review all PRs.</p></li>
+<li><p><strong>It is recommended to create an Owners/Admins team</strong>: this team should contain
+multiple members, so that if somebody is not available, others can still approve
+and merge.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">status</span> <span class="pre">checks</span> <span class="pre">to</span> <span class="pre">pass</span> <span class="pre">before</span> <span class="pre">merging</span></code> <strong>checkbox</strong>: this
+is the sole purpose of CI/CD. Only code which compiles, passes tests, is formatted
+accordingly etc. should be allowed to merge.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">branches</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">date</span> <span class="pre">before</span> <span class="pre">merging</span></code> <strong>checkbox</strong>:  this
+is an important concept, since sometimes, somebody may have merged into <code class="docutils literal notranslate"><span class="pre">main</span></code> a
+certain piece of code which clashes with your own developments. By activating this,
+it is ensured that all code which is merged has been tested and is compatible with
+the current <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Status</span> <span class="pre">Checks</span> <span class="pre">required</span></code> <strong>checkbox</strong>: whenever possible, all workflow
+stages should be included, but at least: <code class="docutils literal notranslate"><span class="pre">Style</span></code>, <code class="docutils literal notranslate"><span class="pre">Documentation</span>
+<span class="pre">Style</span> <span class="pre">Check</span></code>, <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">and</span> <span class="pre">Unit</span> <span class="pre">testing</span></code>, <code class="docutils literal notranslate"><span class="pre">Documentation</span> <span class="pre">build</span></code>, and <code class="docutils literal notranslate"><span class="pre">Smoke</span> <span class="pre">tests</span></code>
+should be activated.</p></li>
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">conversation</span> <span class="pre">resolution</span> <span class="pre">before</span> <span class="pre">merging</span></code> <strong>checkbox</strong>:
+this forces assignees to actually go through all comments. It is just a safety
+measure so that at least any comment left by reviewers is read (and hopefully applied).</p></li>
+</ul>
+</section>
+<section id="tag-protection">
+<h2>Tag protection<a class="headerlink" href="#tag-protection" title="Permalink to this headline">#</a></h2>
+<p>Tags should also be protected, so that only code owners/admins can create them. This can
+be done by accessing:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Repository</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Settings</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Tags</span></code></p>
+</div></blockquote>
+<p>Once inside, and following the PyAnsys tagging convention, the following tags should be
+protected:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">v*</span></code></p>
+</div></blockquote>
+</section>
+<section id="workflow-protection">
+<h2>Workflow protection<a class="headerlink" href="#workflow-protection" title="Permalink to this headline">#</a></h2>
+<p>Finally, workflows can also be protected.</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Repository</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Settings</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">Actions</span></code> &gt;&gt; <code class="docutils literal notranslate"><span class="pre">General</span></code></p>
+</div></blockquote>
+<p>Once inside, focus should be set on the <code class="docutils literal notranslate"><span class="pre">Fork</span> <span class="pre">pull</span> <span class="pre">request</span> <span class="pre">workflows</span> <span class="pre">from</span> <span class="pre">outside</span> <span class="pre">collaborators</span></code>.
+In this case, the PyAnsys team suggests the following:</p>
+<p>Preferred option for public repositories:</p>
+<ul class="simple">
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">approval</span> <span class="pre">for</span> <span class="pre">all</span> <span class="pre">outside</span> <span class="pre">collaborators</span></code> <strong>checkbox when going public</strong>.</p></li>
+</ul>
+<p>Minimum option for public repositories:</p>
+<ul class="simple">
+<li><p><strong>Enable the</strong> <code class="docutils literal notranslate"><span class="pre">Require</span> <span class="pre">approval</span> <span class="pre">for</span> <span class="pre">first-time</span> <span class="pre">contributors</span></code> <strong>while still internal/private</strong>.</p></li>
+</ul>
+<p>Workflows contain sensitive information and it is important to preserve security and control over it.
+However, these rules are more flexible. For example, if you have a common outside collaborator, which
+has been contributing for a time doing you may consider adding it as a member/collaborator of the
+repository so that its PR workflows do not have to be accepted every time he is intending to run it.</p>
+<p>Internal and private repositories are only available to organization users and repository members,
+respectively. Thus, no specific rules for outside collaborators are needed.</p>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

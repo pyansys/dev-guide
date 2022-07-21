@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Numpydoc docstrings &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Documentation style tools" href="formatting-tools.html" />
+    <link rel="prev" title="Documentation style" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../overview/index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../how-to/index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Documentation style</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Numpydoc docstrings</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Numpydoc docstrings
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="formatting-tools.html">
+   Documentation style tools
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-docstring-sections">
+   Required docstring sections
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Short summary
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#short-summaries-for-classes">
+       Short summaries for classes
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#short-summaries-for-methods">
+       Short summaries for methods
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Parameters
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Returns
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Examples
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#type-hints">
+   Type hints
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#additional-directives">
+   Additional directives
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="numpydoc-docstrings">
+<h1>Numpydoc docstrings<a class="headerlink" href="#numpydoc-docstrings" title="Permalink to this headline">#</a></h1>
+<p>When writing docstrings for PyAnsys libraries, use the <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+style.</p>
+<p>For consistency within PyAnsys libraries, always use <code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code> to introduce and conclude a
+docstring, keeping the line length shorter than 70 characters. Ensure that there are
+no blank spaces at the end of a line because they cause errors in build checks that you
+must then resolve.</p>
+<p>A blank line signifies the start of a new paragraph. To create a bulleted or numbered list,
+ensure that there is a blank line before the first item and after the last item. Because you
+use the same markup in docstrings as you do in RST files, see this <a class="reference external" href="https://docutils.sourceforge.io/docs/user/rst/quickref.html">quick reference</a>.</p>
+<p>Surround any text that you want to set apart as literal text in double back ticks to render
+it in a gold monospaced font. Use double back ticks to surround the names of files, folders,
+classes, methods, and variables. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Initialize the ``Desktop`` class with the version of AEDT to use.&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The PyAnsys style uses two back ticks to surround the names of classes, methods, and
+variables, not the single back tick that is recommended by <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>
+style.</p>
+</div>
+<section id="required-docstring-sections">
+<h2>Required docstring sections<a class="headerlink" href="#required-docstring-sections" title="Permalink to this headline">#</a></h2>
+<p>PyAnsys library docstrings contain these <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a> sections as a minimum:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#short-summary">Short Summary</a></p></li>
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#extended-summary">Extended Summary</a> if applicable</p></li>
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#parameters">Parameters</a> if applicable</p></li>
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#returns">Returns</a> if applicable</p></li>
+<li><p><a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#examples">Examples</a></p></li>
+</ul>
+<p>These sections should follow numpydoc style. To avoid inconsistencies between
+PyAnsys libraries, adhere to the additional style guidelines that follow.</p>
+<section id="id1">
+<h3>Short summary<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
+<p>This is a single line that goes immediately after the declaration of the class
+or function to briefly describe what the class or function does. The
+<cite>short summary</cite> is mandatory. If it is not present, <a class="reference internal" href="formatting-tools.html#documentation-style-tools"><span class="std std-ref">Documentation style tools</span></a>
+raises an error.</p>
+<p>The short summary can be declared on the same line as the opening quotes or on
+the next line. While <a class="reference external" href="https://peps.python.org/pep-0257">PEP 257</a> accepts both ways, you must be consistent across your
+project. If you decide to declare the short summary on the same line,
+refer to <a class="reference internal" href="formatting-tools.html#numpydoc-validation"><span class="std std-ref">Numpydoc validation</span></a> because <code class="docutils literal notranslate"><span class="pre">&quot;GL01&quot;</span></code> checking must be
+turned off.</p>
+<p>The guidelines for documenting short summaries differ for classes versus
+functions.</p>
+<section id="short-summaries-for-classes">
+<h4>Short summaries for classes<a class="headerlink" href="#short-summaries-for-classes" title="Permalink to this headline">#</a></h4>
+<p>A class is a <em>noun</em> representing a collection of methods. For consistency within PyAnsys libraries,
+always start the brief description for a class with a verb ending in ‘s’, followed by an extended
+summary in a new line if additional information is needed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FieldAnalysis3D</span><span class="p">(</span><span class="n">Analysis</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Manages 3D field analysis setup in HFSS, Maxwell 3D, and Q3D.</span>
+
+<span class="sd">  This class is automatically initialized by an application call from one of</span>
+<span class="sd">  the 3D tools. For parameter definitions, see the application function.</span>
+
+<span class="sd">  ...</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Ensure that there is a line break between the end of a class docstring and the subsequent methods.</p>
+</section>
+<section id="short-summaries-for-methods">
+<h4>Short summaries for methods<a class="headerlink" href="#short-summaries-for-methods" title="Permalink to this headline">#</a></h4>
+<p>A method is a <em>verb</em> representing an action that can be performed. For consistency within PyAnsys
+libraries, always start the brief description for a method with a verb not ending in ‘s’, followed
+by an extended summary in a new line if additional information is needed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">export_mesh_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">setup_name</span><span class="p">,</span> <span class="n">variation_string</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">mesh_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Export mesh statistics to a file.</span>
+
+<span class="sd">  ...</span>
+<span class="sd">  &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+<p>Methods with a leading underscore (_) are <em>protected</em> methods, meaning that they are not rendered in the
+documentation unless an explicit request is made to add them using Sphinx directives. However, clearly
+written descriptions for private methods are still important.</p>
+<p>If a method has the decorator <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>, it is turned into a property, which is described as a
+noun rather than a verb. Because the resulting property cannot have parameters, you remove
+the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section for this method. If a setter follows the decorator <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code>, do not
+add a docstring for the setter. A setter simply exposes both the GET and SET methods rather
+just the GET method. You should include examples to demonstrate usage.</p>
+</section>
+</section>
+<section id="id2">
+<h3>Parameters<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Functions may have parameters in their signatures. All these parameters should be documented in
+the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section.</p>
+<p>Here is an example of a <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section for a class in PyAEDT:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Parameters</span>
+<span class="gh">----------</span>
+  application : str
+      3D application that is to initialize the call.
+  projectname : str, optional
+      Name of the project to select or the full path to the project
+      or AEDTZ archive to open. The default is <span class="s">``None``</span>, in which
+      case an attempt is made to get an active project. If no
+      projects are present, an empty project is created.
+  designname : str, optional
+      Name of the design to select. The default is <span class="s">``None``</span>, in
+      which case an attempt is made to get an active design. If no
+      designs are present, an empty design is created.
+  solution_type : str, optional
+      Solution type to apply to the design. The default is
+      <span class="s">``None``</span>, in which case the default type is applied.
+  setup_name : str, optional
+      Name of the setup to use as the nominal. The default is
+      <span class="s">``None``</span>, in which case the active setup is used or
+      nothing is used.
+  specified_version : str, optional
+      Version of AEDT  to use. The default is <span class="s">``None``</span>, in which case
+      the active version or latest installed version is used.
+  non_graphical : bool, optional
+      Whether to run AEDT in the non-graphical mode. The default
+      is <span class="s">``False``</span>, in which case AEDT is launched in the graphical mode.
+  new_desktop_session : bool, optional
+      Whether to launch an instance of AEDT in a new thread, even if
+      another instance of the <span class="s">``specified_version``</span> is active on the
+      machine. The default is <span class="s">``True``</span>.
+  close_on_exit : bool, optional
+      Whether to release  AEDT on exit. The default is <span class="s">``False``</span>.
+  student_version : bool, optional
+      Whether to enable the student version of AEDT. The default
+      is <span class="s">``False``</span>.
+</pre></div>
+</div>
+<p>The name of each parameter is followed by a space, a colon, a space, and then
+the data type. A parameter is optional if its keyword argument displays a default
+in the function signature. For an optional parameter, the data type is followed by a
+comma and <code class="docutils literal notranslate"><span class="pre">optional</span></code>.</p>
+<p>The brief description for a parameter is generally a sentence fragment. However,
+additional information is provided in clear, complete sentences. For an optional
+parameter, the description specifies the default along with any information that might
+be needed about the behavior that occurs when the default is used.</p>
+</section>
+<section id="id3">
+<h3>Returns<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section contains only the return data type and a brief description
+that concludes with a period:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Returns</span>
+<span class="gh">-------</span>
+dict
+    Dictionary of components with their absolute paths.
+</pre></div>
+</div>
+<p>A class does not have a <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section. If a <code class="docutils literal notranslate"><span class="pre">Boolean</span></code> is returned, format the
+<code class="docutils literal notranslate"><span class="pre">Returns</span></code> section like this:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Returns</span>
+<span class="gh">-------</span>
+bool
+    <span class="s">``True``</span> when successful, <span class="s">``False``</span> when failed.
+</pre></div>
+</div>
+<p>It is possible for the <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section to look like the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section
+if variable names are provided:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Returns</span>
+<span class="gh">-------</span>
+has_succeeded : bool
+    <span class="s">``True``</span> when successful, <span class="s">``False``</span> when failed.
+</pre></div>
+</div>
+<p>It is possible for more than one item to be returned:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Returns</span>
+<span class="gh">-------</span>
+type
+    Ground object.
+str
+    Ground name.
+</pre></div>
+</div>
+<p>If a method does not have a decorator, the basic implementation of Python
+methods is used. In this case, while <code class="docutils literal notranslate"><span class="pre">None</span></code> is returned, you do not document it.
+Consequently, such a method does not have a <code class="docutils literal notranslate"><span class="pre">Returns</span></code> section.</p>
+</section>
+<section id="id4">
+<h3>Examples<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">Examples</span></code> section provides a quick reference on how to use a method or
+a function. This section must be compliant with the <a class="reference external" href="https://docs.python.org/3/library/doctest.html">doctest</a> format and is not supposed to
+replace your test suite but complement it. As an example,
+consider this function:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Examples</span>
+<span class="gh">--------</span>
+Create an instance of HFSS and connect to an existing HFSS
+design or create a new HFSS design if one does not exist.
+
+&gt;&gt;&gt; from pyaedt import Hfss
+&gt;&gt;&gt; hfss = Hfss()
+pyaedt info: No project is defined...
+pyaedt info: Active design is set to...
+</pre></div>
+</div>
+<p>If the definition of the function is updated, this
+section must be updated too.</p>
+</section>
+</section>
+<section id="type-hints">
+<h2>Type hints<a class="headerlink" href="#type-hints" title="Permalink to this headline">#</a></h2>
+<p>By default, Sphinx renders <a class="reference external" href="https://peps.python.org/pep-0484/">type hints</a> as part
+of the function signature. This can become difficult to read, because the signature
+becomes very long.</p>
+<p>Instead, you should render type hints as part of each parameter’s description. To
+accomplish this, you must combine the <code class="docutils literal notranslate"><span class="pre">sphinx.ext.autodoc.typehints</span></code>, <code class="docutils literal notranslate"><span class="pre">sphinx.ext.napoleon</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> extensions in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;sphinx.ext.autodoc.typehints&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;sphinx.ext.napoleon&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;numpydoc&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">]</span>
+<span class="n">autodoc_typehints</span> <span class="o">=</span> <span class="s2">&quot;description&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The order in which you include these extensions matters.</p>
+</div>
+<p>When using type hints in this way, the type information in the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code>
+and <code class="docutils literal notranslate"><span class="pre">Returns</span></code> sections can be omitted.</p>
+</section>
+<section id="additional-directives">
+<h2>Additional directives<a class="headerlink" href="#additional-directives" title="Permalink to this headline">#</a></h2>
+<p>Because Python docstrings are written using RST syntax, it is possible to take
+advantage of some directives available in this Markup language. Commonly used
+directives include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">note::</span></code> highlights important information in the rendered documentation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">warning::</span></code> typically points out an action that might result in data loss.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">deprecated::</span> <span class="pre">X.Y.Z</span></code> informs the user about the deprecated status of
+the object or feature.</p></li>
+</ul>
+<p>You can find additional information and examples at <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpydoc</a>. Reference
+this documentation as the primary source regarding docstring styles for directives
+that are not covered here.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
+<p>A generic docstring example compliant with PyAnsys guidelines is shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Summary line &lt;should be only one line&gt;.</span>
+
+<span class="sd">    Extended description of the function. The extended description,</span>
+<span class="sd">    which can span multiple lines, should provide a general overview</span>
+<span class="sd">    of the function.</span>
+
+<span class="sd">    .. warning::</span>
+<span class="sd">       Use the ``.. warning::`` directive within the docstring for any</span>
+<span class="sd">       warnings that need to be explicitly stated. For example, you</span>
+<span class="sd">       want to include a warning for a method that is to be deprecated</span>
+<span class="sd">       in the next release.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    arg1 : int</span>
+<span class="sd">        Description of ``arg1``.</span>
+<span class="sd">    arg2 : str</span>
+<span class="sd">        Description of ``arg2``.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bool</span>
+<span class="sd">        Description of the return value.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; func(1, &#39;foo&#39;)</span>
+<span class="sd">    True</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>To include the docstring of a function within Sphinx, you use the
+<code class="docutils literal notranslate"><span class="pre">autofunction::</span></code> directive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">autofunction</span><span class="p">::</span> <span class="n">ansys_sphinx_theme</span><span class="o">.</span><span class="n">sample_func</span><span class="o">.</span><span class="n">func</span>
+</pre></div>
+</div>
+<p>This directive renders the sample function as:</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.sample_func.func">
+<span class="sig-prename descclassname"><span class="pre">ansys_sphinx_theme.sample_func.</span></span><span class="sig-name descname"><span class="pre">func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arg2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys_sphinx_theme.sample_func.func" title="Permalink to this definition">#</a></dt>
+<dd><p>Summary line &lt;should be one one line&gt;.</p>
+<p>Extended description of function.  Can span multiple lines and
+provides a general overview of the function.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">warning::</span></code> directive within the doc-string for any
+warnings you would like to explicitly state.  For example, if
+this method will be deprecated in the next release.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arg1</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – Description of arg1.</p></li>
+<li><p><strong>arg2</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Description of arg2.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Description of return value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">func</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;foo&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

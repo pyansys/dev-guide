@@ -1,0 +1,1196 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Documenting &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Testing" href="testing.html" />
+    <link rel="prev" title="Logging" href="logging.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../overview/index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../doc-style/index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">How-To</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Documenting</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setting-up.html">
+   Setting up your development environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-python-versions.html">
+   Supporting Python versions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="packaging.html">
+   Packaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Documenting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous-integration.html">
+   Using continuous integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="releasing.html">
+   Releasing and publishing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="repository-protection.html">
+   Repository protection
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documentation-sources">
+   Documentation sources
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#docstrings">
+     Docstrings
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rst-files">
+     RST files
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#indicating-rst-titles">
+       Indicating RST titles
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#recommended-sections">
+       Recommended sections
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#documenting-python-code">
+   Documenting Python code
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#documenting-classes">
+     Documenting classes
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#manual-documentation">
+       Manual documentation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#auto-generated-documentation">
+       Auto-generated documentation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#documenting-multiple-classes">
+       Documenting multiple classes
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-documentation">
+   Building documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-html-documentation">
+     Building HTML documentation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-pdf-documentation">
+     Building PDF documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deploying-documentation">
+   Deploying documentation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#building-your-documentation-within-github">
+     Building your documentation within GitHub
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#documentation-workflow">
+       Documentation workflow
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deploying-to-github-pages">
+       Deploying to GitHub pages
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#deploying-by-using-a-bot">
+         Deploying by using a bot
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#deploying-by-using-a-personal-access-token-pat">
+         Deploying by using a personal access token (PAT)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#deploying-when-tagging">
+       Deploying when tagging
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#accessing-online-documentation">
+   Accessing online documentation
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="documenting">
+<h1>Documenting<a class="headerlink" href="#documenting" title="Permalink to this headline">#</a></h1>
+<p>PyAnsys documentation must not only be written but also maintained. If you are
+new to writing developer documentation, see the <a class="reference external" href="https://developers.google.com/style">Google Developer Documentation
+Style Guide</a>. It provides
+editorial guidelines for writing clear and consistent developer documentation,
+allowing this guide to supply guidance only specific to PyAnsys library
+documentation.</p>
+<p>When writing developer documentation, the relationship between code and
+documentation is key. To keep documentation up to date with evolving
+code:</p>
+<ul class="simple">
+<li><p>Minimize the content footprint.</p></li>
+<li><p>Write <a class="reference external" href="https://developers.google.com/style/timeless-documentation">timeless documentation</a>.</p></li>
+<li><p>Support contributions from both inside and outside of the development team.</p></li>
+<li><p>Perform periodic reviews.</p></li>
+</ul>
+<section id="documentation-sources">
+<h2>Documentation sources<a class="headerlink" href="#documentation-sources" title="Permalink to this headline">#</a></h2>
+<div align="center">
+  <img src="https://github.com/sphinx-doc/sphinx/raw/5.x/doc/_static/sphinx.png">
+</div>
+<br><p>The generation of PyAnsys documentation uses <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> and an Ansys-branded theme
+(<a class="reference external" href="https://github.com/ansys/Sansys-sphinx-theme">ansys-sphinx-theme</a>) to
+assemble content in:</p>
+<ul class="simple">
+<li><p>Docstrings</p></li>
+<li><p>reStructuredText (RST) files</p></li>
+<li><p>Python (PY) example files</p></li>
+</ul>
+<section id="docstrings">
+<h3>Docstrings<a class="headerlink" href="#docstrings" title="Permalink to this headline">#</a></h3>
+<p>Docstrings must be formatted so that Sphinx can parse them. You can use either
+of these Sphinx extensions:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pypi.org/project/numpydoc/">numpydoc</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/sphinxcontrib-napoleon/">napoleon</a></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> extension is generally preferred because it supports an API
+documentation structure with one page per method, providing Python community
+members with documentation like that generated by <a class="reference external" href="https://pandas.pydata.org/">pandas</a>
+and <a class="reference external" href="https://numpy.org/">NumPy</a>. If, however, your API is very linear, you
+might prefer the <code class="docutils literal notranslate"><span class="pre">napoleon</span></code> extension because it supports a documentation
+structure where everything needed to solve a certain problem can be shown on one page.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">numpydoc</span></code> extension provides its own <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">style guide</a> and a <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/">user guide</a> that explains how to use the
+extension with Sphinx. The <code class="docutils literal notranslate"><span class="pre">napoleon</span></code> extension, which parses both numpydoc and
+Google style docstrings, refers you to the <a class="reference external" href="https://google.github.io/styleguide/pyguide.html">Google Python Style Guide</a>.</p>
+<p>Regardless of the extension that you choose for generating documentation, using
+numpy-style docstrings ensures that there is consistency within PyAnsys libraries.
+For more information, see <a class="reference internal" href="../doc-style/index.html#documentation-style"><span class="std std-ref">Documentation style</span></a>.</p>
+</section>
+<section id="rst-files">
+<h3>RST files<a class="headerlink" href="#rst-files" title="Permalink to this headline">#</a></h3>
+<p>To provide general usage information in your documentation, use your favorite
+editor to create RST (ReStructured Text) files that you then place in <a class="reference internal" href="../packaging/structure.html#the-doc-directory"><span class="std std-ref">The doc/ directory</span></a> directory. The <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file in the <code class="docutils literal notranslate"><span class="pre">doc/source</span></code> directory
+defines the first level of your documentation hierarchy. The <code class="docutils literal notranslate"><span class="pre">toctree</span></code>
+directive (which stands for “table of contents tree”) indicates the maximum
+number of heading levels that the documentation is to display. Following this
+directive are the directory names for your documentation sections.</p>
+<figure class="align-center" id="id1">
+<span id="proposed-doc-layout"></span><div class="graphviz"><img src="../_images/graphviz-8451b2e88e07ae1e3dbc6a44e3a11d3fb5bc3dd1.png" alt="Generic structure for the PyAnsys library documentation." class="graphviz" /></div>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Generic structure for the PyAnsys library documentation.</span><a class="headerlink" href="#id1" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Each documentation section has its own <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file, as shown by the preceding
+figure. The documentation layout can be modeled using the following code in
+each one of the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> files.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">index.rst</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">section_A/index.rst</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">section_B/index.rst</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Welcome to the Library Documentation</span>
+<span class="gh">####################################</span>
+
+This is the content of the root <span class="nv">`index.rst`</span> file.
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+    section_A/index
+    section_B/index
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Section A</span>
+<span class="gh">#########</span>
+
+This is the content of the <span class="nv">`section_A/index.rst`</span> file.
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+    section_1
+    section_2
+<span class="cp">    ...</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Section B</span>
+<span class="gh">#########</span>
+
+This is the content of the <span class="nv">`section_B/index.rst`</span> file.
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+
+    another_section
+<span class="cp">    ...</span>
+</pre></div>
+</div>
+</div></div>
+<p>While you do not include the <code class="docutils literal notranslate"><span class="pre">.rst</span></code> extension when defining the section
+structure, the index file referenced for each section must be named
+<code class="docutils literal notranslate"><span class="pre">index.rst</span></code>.</p>
+<p>After you build documentation locally as described in <a class="reference internal" href="#building-documentation"><span class="std std-ref">Building documentation</span></a>, the first-level heading in the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file for each
+section is shown as a clickable link in the header of the
+documentation’s generated HTML output. For more information on defining a
+documentation structure, see the <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/quickstart.html">Sphinx Getting Started</a> guide.</p>
+<section id="indicating-rst-titles">
+<h4>Indicating RST titles<a class="headerlink" href="#indicating-rst-titles" title="Permalink to this headline">#</a></h4>
+<p>Within RST files, heading titles are followed by a line having a string of
+characters that is the same length as the heading title. If the length of the
+characters under the heading title do not match the length of the heading
+title, Sphinx generates a warning.</p>
+<p>For consistency within PyAnsys libraries, the use of these special characters
+is recommended for headings but is not enforced:</p>
+<ul class="simple">
+<li><p>For section-level headings, use <code class="docutils literal notranslate"><span class="pre">###</span></code>.</p></li>
+<li><p>For subsection-level headings, use <code class="docutils literal notranslate"><span class="pre">===</span></code>.</p></li>
+<li><p>For subsubsection-level headings, use <code class="docutils literal notranslate"><span class="pre">---</span></code>.</p></li>
+<li><p>For subsubsubsection-level headings, use <code class="docutils literal notranslate"><span class="pre">~~~</span></code>.</p></li>
+<li><p>For paragraph-level headings, use <code class="docutils literal notranslate"><span class="pre">+++</span></code>.</p></li>
+</ul>
+<p>For comprehensive syntax information, see the <a class="reference external" href="https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html">reStrucutredText Markup Specification</a>.</p>
+<p>Because you need to be familiar with the content in the <a class="reference external" href="dev.docs.pyansys.com/">PyAnsys Developer’s
+Guide</a>, page through its HTML pages and then explore
+the RST files in its repository. This should help you to understand the syntax and
+see how RST files have been nested to create this developer’s guide.</p>
+</section>
+<section id="recommended-sections">
+<h4>Recommended sections<a class="headerlink" href="#recommended-sections" title="Permalink to this headline">#</a></h4>
+<p>Although each project is different, documentation has the same goal: providing
+instructions and guidelines for users. Thus, some common sections can be
+found across software projects. Try to include these top-level sections in your project:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Getting</span> <span class="pre">Started</span></code> contains guidelines on how to install and set up the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Guide</span></code> demonstrates some of the basic features of the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">API</span> <span class="pre">Reference</span></code> documents the different objects of the library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Examples</span></code> provides fully fledged tutorials and use cases for the library.</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">#</a></h3>
+<p>Examples come in two formats:</p>
+<ul class="simple">
+<li><p>Basic code snippets demonstrating the feature</p></li>
+<li><p>Full-fledged standalone examples that are meant to be run as downloadable scripts</p></li>
+</ul>
+<p>Place basic code snippets in the <code class="docutils literal notranslate"><span class="pre">doc/source/</span></code> directory.
+Place full-fledged standalone examples in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory
+at the root of the repository. All of these examples, which should be compliant
+with <a class="reference internal" href="../coding-style/pep8.html#pep-8"><span class="std std-ref">PEP 8</span></a>, are compiled dynamically during the build process. Always ensure
+that your examples run properly locally because they are verified through
+the CI performed via GitHub Actions.</p>
+<p>Adding a new standalone example consists of placing it in an applicable
+subdirectory in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory. If none of the existing directories
+match the category of your example, create a new subdirectory with a
+<code class="docutils literal notranslate"><span class="pre">README.txt</span></code> file describing the new category. Because these examples are
+built using the <a class="reference external" href="https://sphinx-gallery.github.io/stable/index.html">Sphinx-Gallery</a> extension, you must
+follow its <a class="reference external" href="https://sphinx-gallery.github.io/stable/index.html">coding guidelines</a>.</p>
+<p>PyMAPDL provides a self-demonstrating example of how to <a class="reference external" href="https://mapdldocs.pyansys.com/examples/03-tips-n-tricks/00-example-template.html#ref-how-to-add-an-example-reference-key">add an example
+reference key</a>.</p>
+</section>
+</section>
+<section id="documenting-python-code">
+<h2>Documenting Python code<a class="headerlink" href="#documenting-python-code" title="Permalink to this headline">#</a></h2>
+<p>You can use <cite>sphinx.ext.autodoc</cite> to document your Python code. When using this
+extension, you can include the following directives in your <a class="reference internal" href="#rst-files"><span class="std std-ref">RST files</span></a>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">automodule</span></code> for documenting modules</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autoclass</span></code> for documenting classes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">autofunction</span></code> for documenting functions</p></li>
+</ul>
+<p>For a full list of auto-directives, see <a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/extensions/autodoc.html">Include Documentation From Docstrings</a>.</p>
+<section id="documenting-classes">
+<h3>Documenting classes<a class="headerlink" href="#documenting-classes" title="Permalink to this headline">#</a></h3>
+<p>There are two main ways of using Sphinx to document a class:</p>
+<ul class="simple">
+<li><p>Manually describe ‘how’ and ‘why’ to use a class in either a <code class="docutils literal notranslate"><span class="pre">User</span> <span class="pre">Guide</span></code> or
+an example within the library’s documentation.</p></li>
+<li><p>Automatically generate documentation for classes using the <code class="docutils literal notranslate"><span class="pre">autoclass</span></code> or
+<code class="docutils literal notranslate"><span class="pre">autosummary</span></code> directive.</p></li>
+</ul>
+<section id="manual-documentation">
+<h4>Manual documentation<a class="headerlink" href="#manual-documentation" title="Permalink to this headline">#</a></h4>
+<p>To manually describe ‘how’ and ‘why’ to exercise a class, use the <code class="docutils literal notranslate"><span class="pre">code-block</span></code>
+directive:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">Doc Source Code</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Rendered Doc</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>Initialize <span class="s">``my_module.MyClass``</span> with initial parameters. These
+parameters are automatically assigned to the class.
+
+<span class="p">..</span> <span class="ow">code-block</span><span class="p">::</span> <span class="k">pycon</span>
+
+   <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">my_module</span> <span class="kn">import</span> <span class="n">MyClass</span>
+   <span class="gp">&gt;&gt;&gt; </span><span class="n">my_obj</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">(</span><span class="n">parm1</span><span class="o">=</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="n">parm2</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+   <span class="gp">&gt;&gt;&gt; </span><span class="n">my_obj</span><span class="o">.</span><span class="n">parm1</span>
+   <span class="go">&#39;apple&#39;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><p>Initialize <code class="docutils literal notranslate"><span class="pre">my_module.MyClass</span></code> with initial parameters. These
+parameters are automatically assigned to the class.</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">my_module</span> <span class="kn">import</span> <span class="n">MyClass</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_obj</span> <span class="o">=</span> <span class="n">MyClass</span><span class="p">(</span><span class="n">parm1</span><span class="o">=</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="n">parm2</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_obj</span><span class="o">.</span><span class="n">parm1</span>
+<span class="go">&#39;apple&#39;</span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="auto-generated-documentation">
+<h4>Auto-generated documentation<a class="headerlink" href="#auto-generated-documentation" title="Permalink to this headline">#</a></h4>
+<p>To automatically generate class descriptions, use either the <code class="docutils literal notranslate"><span class="pre">autoclass</span></code>
+or <code class="docutils literal notranslate"><span class="pre">autosummary</span></code> directive.</p>
+<p>For simple classes, use the <code class="docutils literal notranslate"><span class="pre">autoclass</span></code> directive:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">Doc Source Code</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Rendered Doc</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autoclass</span><span class="p">::</span> ansys_sphinx_theme.samples.ExampleClass
+   <span class="nc">:members:</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><dl class="py class">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.samples.ExampleClass">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys_sphinx_theme.samples.</span></span><span class="sig-name descname"><span class="pre">ExampleClass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param3</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys_sphinx_theme.samples.ExampleClass" title="Permalink to this definition">#</a></dt>
+<dd><p>The summary line for a class docstring should fit on one line.</p>
+<p>Attributes should be documented inline with the attribute’s
+declaration.</p>
+<p>Properties created with the <code class="docutils literal notranslate"><span class="pre">&#64;property</span></code> decorator should be
+documented in the property’s getter method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param1</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Description of <cite>param1</cite>.</p></li>
+<li><p><strong>param2</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Description of <cite>param2</cite>. Multiple
+lines are supported.</p></li>
+<li><p><strong>param3</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, optional) – Description of <cite>param3</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>An example of how to initialize this class should be given.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">ansys_sphinx_theme</span> <span class="kn">import</span> <span class="n">samples</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">ExampleClass</span><span class="p">(</span><span class="s1">&#39;mystr&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">],</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.samples.ExampleClass.example_method">
+<span class="sig-name descname"><span class="pre">example_method</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys_sphinx_theme.samples.ExampleClass.example_method" title="Permalink to this definition">#</a></dt>
+<dd><p>Class methods are similar to regular functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param1</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The first parameter.</p></li>
+<li><p><strong>param2</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The second parameter.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if successful, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Do not include the <code class="docutils literal notranslate"><span class="pre">self</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> section.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">example_method</span><span class="p">(</span><span class="s1">&#39;foo&#39;</span><span class="p">,</span> <span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.samples.ExampleClass.readonly_property">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readonly_property</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#ansys_sphinx_theme.samples.ExampleClass.readonly_property" title="Permalink to this definition">#</a></dt>
+<dd><p>Properties should be documented in their getter method.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">readonly_property</span>
+<span class="go">&quot;readonly_property&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.samples.ExampleClass.readwrite_property">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">readwrite_property</span></span><a class="headerlink" href="#ansys_sphinx_theme.samples.ExampleClass.readwrite_property" title="Permalink to this definition">#</a></dt>
+<dd><p>Set or return the readwrite property.</p>
+<p>Properties with both a getter and setter should only be documented in
+their getter method.</p>
+<p>If the setter method contains notable behavior, it should be mentioned
+here.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">readwrite_property</span>
+<span class="go">&quot;readwrite_property&quot;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">readwrite_property</span> <span class="o">=</span> <span class="s1">&#39;hello world&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">example</span><span class="o">.</span><span class="n">readwrite_property</span>
+<span class="go">&#39;hello world&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></div>
+<p>For complex classes with many methods, use the
+<code class="docutils literal notranslate"><span class="pre">autosummary</span></code> directive:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">Doc Source Code</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Rendered Doc</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">autoclass</span><span class="p">::</span> ansys_sphinx_theme.samples.Complex
+
+<span class="p">..</span> <span class="ow">autosummary</span><span class="p">::</span>
+   <span class="nc">:toctree:</span> api/
+
+   ansys_sphinx_theme.samples.Complex.real
+   ansys_sphinx_theme.samples.Complex.imag
+   ansys_sphinx_theme.samples.Complex.abs
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"><dl class="py class">
+<dt class="sig sig-object py" id="ansys_sphinx_theme.samples.Complex">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ansys_sphinx_theme.samples.</span></span><span class="sig-name descname"><span class="pre">Complex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">imag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ansys_sphinx_theme.samples.Complex" title="Permalink to this definition">#</a></dt>
+<dd><p>Custom implementation of a complex number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>real</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Real component of the complex number.</p></li>
+<li><p><strong>imag</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>, </em><em>optional</em>) – Imaginary component of the complex number.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_num</span> <span class="o">=</span> <span class="n">Complex</span><span class="p">(</span><span class="n">real</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">imag</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_num</span>
+<span class="go">(1.0 + 1.0j)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ansys_sphinx_theme.samples.Complex.real</span></code></p></td>
+<td><p>Real component of this complex number.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ansys_sphinx_theme.samples.Complex.imag</span></code></p></td>
+<td><p>Real component of this complex number.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">ansys_sphinx_theme.samples.Complex.abs</span></code></p></td>
+<td><p>Return the absolute value of this number.</p></td>
+</tr>
+</tbody>
+</table>
+</div></div>
+</section>
+<section id="documenting-multiple-classes">
+<h4>Documenting multiple classes<a class="headerlink" href="#documenting-multiple-classes" title="Permalink to this headline">#</a></h4>
+<p>To document a set of small but highly cohesive classes, an option is to combine
+the two preceding approaches. This is done by including multiple
+<code class="docutils literal notranslate"><span class="pre">autoclass</span></code> directives on the same page with headings and text blocks as
+necessary to describe the relationships between the classes.</p>
+<p>For example, the Granta MI BoM Analytics library uses this combined approach:
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/parts.html" title="(in ansys.grantami.bomanalytics v1.0.1)"><span class="xref std std-doc">Part Compliance page</span></a>
+first describes the
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/parts.html#ansys.grantami.bomanalytics.queries.PartComplianceQuery" title="(in ansys.grantami.bomanalytics v1.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartComplianceQuery</span></code></a>
+class. It then describes the
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/parts.html#ansys.grantami.bomanalytics._query_results.PartComplianceQueryResult" title="(in ansys.grantami.bomanalytics v1.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartComplianceQueryResult</span></code></a>,
+and
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/parts.html#ansys.grantami.bomanalytics._item_results.PartWithComplianceResult" title="(in ansys.grantami.bomanalytics v1.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PartWithComplianceResult</span></code></a>
+classes returned by the query. Because the classes are only ever
+encountered together in this context, they are documented on a
+single page.</p>
+<p>In contrast, the
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/indicators.html#ansys.grantami.bomanalytics.indicators.RoHSIndicator" title="(in ansys.grantami.bomanalytics v1.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">RoHSIndicator</span></code></a>
+and
+<a class="reference external" href="https://grantami.docs.pyansys.com/api/compliance/indicators.html#ansys.grantami.bomanalytics.indicators.WatchListIndicator" title="(in ansys.grantami.bomanalytics v1.0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">WatchListIndicator</span></code></a>
+classes are shared across multiple queries. Consequently, they are
+documented separately.</p>
+</section>
+</section>
+</section>
+<section id="building-documentation">
+<h2>Building documentation<a class="headerlink" href="#building-documentation" title="Permalink to this headline">#</a></h2>
+<p><a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> is used to build the documentation.
+You configure the entire build process in the <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> file, located in the
+<code class="docutils literal notranslate"><span class="pre">source/</span></code> directory in <a class="reference internal" href="../packaging/structure.html#the-doc-directory"><span class="std std-ref">The doc/ directory</span></a>.</p>
+<p>This directory also contains a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> file and a <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> file for
+automating the building process. Different builders render different
+documentation output, such as <code class="docutils literal notranslate"><span class="pre">HTML</span></code>, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code> or
+<code class="docutils literal notranslate"><span class="pre">PDF</span></code>.</p>
+<section id="building-html-documentation">
+<h3>Building HTML documentation<a class="headerlink" href="#building-html-documentation" title="Permalink to this headline">#</a></h3>
+<p>You build <code class="docutils literal notranslate"><span class="pre">HTML</span></code> documentation with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-TWFrZWZpbGU=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tab" tabindex="0">Makefile</button><button aria-controls="panel-4-bWFrZS5iYXQ=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tab" tabindex="-1">make.bat</button></div><div aria-labelledby="tab-4-TWFrZWZpbGU=" class="sphinx-tabs-panel group-tab" id="panel-4-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make html
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-bWFrZS5iYXQ=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make.bat html
+</pre></div>
+</div>
+</div></div>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">HTML</span></code> files are created in the <code class="docutils literal notranslate"><span class="pre">_build/html</span></code> directory,
+located in <a class="reference internal" href="../packaging/structure.html#the-doc-directory"><span class="std std-ref">The doc/ directory</span></a>.</p>
+<p>You can display the HTML documentation with:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;browser&gt; doc/_build/html/index.html
+</pre></div>
+</div>
+</section>
+<section id="building-pdf-documentation">
+<h3>Building PDF documentation<a class="headerlink" href="#building-pdf-documentation" title="Permalink to this headline">#</a></h3>
+<p>To  build <code class="docutils literal notranslate"><span class="pre">PDF</span></code> documentation, the following rules must be added to
+<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and <code class="docutils literal notranslate"><span class="pre">make.bat</span></code> files:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-TWFrZWZpbGU=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tab" tabindex="0">Makefile</button><button aria-controls="panel-5-bWFrZS5iYXQ=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tab" tabindex="-1">make.bat</button></div><div aria-labelledby="tab-5-TWFrZWZpbGU=" class="sphinx-tabs-panel group-tab" id="panel-5-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>pdf:
+        @$(SPHINXBUILD) -M latex &quot;$(SOURCEDIR)&quot; &quot;$(BUILDDIR)&quot; $(SPHINXOPTS) $(O)
+        cd build/latex &amp;&amp; latexmk -r latexmkrc -pdf *.tex -interaction=nonstopmode || true
+        (test -f build/latex/*.pdf &amp;&amp; echo pdf exists) || exit 1
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-5-bWFrZS5iYXQ=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>:pdf
+        %SPHINXBUILD% -M latex %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+        cd &quot;%BUILDDIR%\latex&quot;
+        pdflatex \*.tex --interaction=nonstopmode
+</pre></div>
+</div>
+</div></div>
+<p>You can call previous rules by running:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-TWFrZWZpbGU=" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tab" tabindex="0">Makefile</button><button aria-controls="panel-6-bWFrZS5iYXQ=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tab" tabindex="-1">make.bat</button></div><div aria-labelledby="tab-6-TWFrZWZpbGU=" class="sphinx-tabs-panel group-tab" id="panel-6-TWFrZWZpbGU=" name="TWFrZWZpbGU=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make pdf
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-6-bWFrZS5iYXQ=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-bWFrZS5iYXQ=" name="bWFrZS5iYXQ=" role="tabpanel" tabindex="0"><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make.bat pdf
+</pre></div>
+</div>
+</div></div>
+<p>The resulting PDF and intermediate LaTeX files are created in the
+<code class="docutils literal notranslate"><span class="pre">_build/latex</span></code> folder, located in <a class="reference internal" href="../packaging/structure.html#the-doc-directory"><span class="std std-ref">The doc/ directory</span></a>.</p>
+<div class="admonition-always-verify-the-content-of-your-pdf-file admonition">
+<p class="admonition-title">Always verify the content of your PDF file.</p>
+<p>Because warnings and errors that occur during the LaTeX building and rendering
+processes are ignored, it is possible that the PDF file has text formatting errors.</p>
+</div>
+</section>
+</section>
+<section id="deploying-documentation">
+<h2>Deploying documentation<a class="headerlink" href="#deploying-documentation" title="Permalink to this headline">#</a></h2>
+<p>PyAnsys libraries deploy their documentation online via <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> to
+<a class="reference external" href="https://pages.github.com/">GitHub Pages</a>. For example, this documentation is hosted on the <a class="reference external" href="https://github.com/pyansys/dev-guide/tree/gh-pages">gh-pages</a>
+branch within this repository. This is done by uploading the generated
+documentation within the <code class="docutils literal notranslate"><span class="pre">doc/_build/html/</span></code> directory directly to the
+<code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch and then <a class="reference external" href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site">enabling GitHub pages</a>.</p>
+<section id="building-your-documentation-within-github">
+<h3>Building your documentation within GitHub<a class="headerlink" href="#building-your-documentation-within-github" title="Permalink to this headline">#</a></h3>
+<p>While you could manually upload your auto-generated documentation for each
+release using your own local GitHub credentials, the best practice is to have
+your documentation build on GitHub and deployed either on release or push to
+main. You can do this via <a class="reference external" href="https://github.com/features/actions">GitHub Actions</a> by creating a new workflow that
+generates your documentation on each pull request and then deploys under
+certain conditions.</p>
+<section id="documentation-workflow">
+<h4>Documentation workflow<a class="headerlink" href="#documentation-workflow" title="Permalink to this headline">#</a></h4>
+<p>Your documentation workflow should be in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>
+directory and should be triggered on each PR. It should use one of the
+following approaches:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-7-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-7-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-7-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><p>The best way to get started with <code class="docutils literal notranslate"><span class="pre">tox</span></code> is to use the <a class="reference external" href="https://github.com/ansys/ansys-templates">ansys-templates</a> tool and run:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ansys-templates new pyansys-advanced
+</pre></div>
+</div>
+<p>This generates a new GitHub workflow file containing this section:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">docs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Documentation</span><span class="w"></span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span><span class="w"></span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.7</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip flit tox</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Generate the documentation with tox</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tox -e doc</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-7-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><p>While <a class="reference external" href="https://github.com/tox-dev/tox">tox</a> is the preferred tool for automating your documentation build, if
+you want to avoid using <a class="reference external" href="https://github.com/tox-dev/tox">tox</a>, consider the following workflow:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">docs</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Documentation</span><span class="w"></span>
+<span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span><span class="w"></span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span><span class="w"></span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.8</span><span class="w"></span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install &lt;PROJECT-NAME&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install .</span><span class="w"></span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install documentation build requirements</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install -r requirements/requirements_docs.txt</span><span class="w"></span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build Documentation</span><span class="w"></span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span><span class="w"></span>
+<span class="w">        </span><span class="no">make -C doc html SPHINXOPTS=&quot;-j auto -W --keep-going&quot;</span><span class="w"></span>
+<span class="w">        </span><span class="no">touch doc/_build/html/.nojekyll</span><span class="w"></span>
+<span class="w">        </span><span class="no">&lt;product&gt;.docs.pyansys.com &gt; doc/_build/html/CNAME</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+<p>Your next step would be to upload the documentation artifact. Assuming your
+documentation is written to <code class="docutils literal notranslate"><span class="pre">doc/_build/html</span></code>, upload your documentation
+with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-8-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-8-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-8-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload HTML Documentation</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTML-Documentation</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.tox/doc_out/</span><span class="w"></span>
+<span class="w">    </span><span class="nt">retention-days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-8-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-8-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload HTML Documentation</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v2</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTML-Documentation</span><span class="w"></span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doc/_build/html</span><span class="w"></span>
+<span class="w">    </span><span class="nt">retention-days</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">7</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+<p>This allows anyone creating pull requests to download documentation build
+artifacts as a convenient zip file and to open the documentation by opening
+<code class="docutils literal notranslate"><span class="pre">index.html</span></code>.</p>
+</section>
+<section id="deploying-to-github-pages">
+<h4>Deploying to GitHub pages<a class="headerlink" href="#deploying-to-github-pages" title="Permalink to this headline">#</a></h4>
+<p>Next, deploy your documentation to the <code class="docutils literal notranslate"><span class="pre">gh-pages</span></code> branch with the
+<a class="reference external" href="https://github.com/JamesIves/github-pages-deploy-action">JamesIves/github-pages-deploy-action</a> action.</p>
+<div class="admonition-deploying-to-another-repository admonition">
+<p class="admonition-title">Deploying to another repository.</p>
+<p>If you are planning to deploy documentation to repository other than
+the one for your project, make sure you create this new repository before deploying
+your documentation for the first time.</p>
+</div>
+<p>The following job step shows the logic for deploying. If you want to deploy to
+another repository, make sure to uncomment the <code class="docutils literal notranslate"><span class="pre">repository-name</span></code> line and
+declare the name of your documentation repository:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-9-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-9-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-9-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># repository-name: pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.tox/doc_out</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-9-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span><span class="w"></span>
+<span class="w">    </span><span class="c1"># repository-name: pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doc/_build/html</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+<p>Notice that for previous job steps, a <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> is required. GitHub
+automatically generates the token <code class="docutils literal notranslate"><span class="pre">GITHUB_TOKEN</span></code> which you can use as
+<code class="docutils literal notranslate"><span class="pre">token</span></code> for deploying documentation to the same repository. However, if you are
+planning to deploy to another repository, this token does not have the necessary permissions.</p>
+<p>In this case, there are two options for documentation deployment, using a bot
+and using a personal access token (PAT). Depending on your profile (such as how many
+organizations you work in and your permissions for different repositories), using
+a PAT can be potentially dangerous because a PAT is not restricted to defined
+repositories but rather has general permissions. This means that a PAT with
+<cite>repository-write</cite> permission can write in any repository in any organization that the
+PAT creator can access.</p>
+<p>Therefore, the recommended approach is to <strong>use a bot</strong>. However, you can use a
+PAT if you feel it fits your needs better.</p>
+<section id="deploying-by-using-a-bot">
+<h5>Deploying by using a bot<a class="headerlink" href="#deploying-by-using-a-bot" title="Permalink to this headline">#</a></h5>
+<p>To deploy documentation to a repository other than the one where the documentation
+is generated, you must have permissions to access (<em>read/write</em>) this second repository.
+These permissions can be handled using a specifically created bot. In the PyAnsys
+organization, there is <a class="reference external" href="https://github.com/apps/pyansys-bot">PyAnsys Bot</a>, which has read and write permission across
+some repositories and can be used for this purpose.</p>
+<div class="admonition-organization-approval-to-use-pyansys-bot admonition">
+<p class="admonition-title">Organization approval to use PyAnsys bot</p>
+<p>You must have internal approval to use the PyAnsys bot because your repository must
+be added to its list of repositories. For more information, email
+<a class="reference external" href="mailto:pyansys&#46;support&#37;&#52;&#48;ansys&#46;com">PyAnsys Support</a>.</p>
+</div>
+<p>Once your repository has been added to the white-list for the bot repositories, you must
+add the following code to your CICD YAML file for the authentication:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-10-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-10-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-10-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get Bot Application Token</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get_workflow_token</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peter-murray/workflow-application-token-action@v1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">application_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.BOT_APPLICATION_ID }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">application_private_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.BOT_APPLICATION_PRIVATE_KEY }}</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-10-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-10-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Get Bot Application Token</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">get_workflow_token</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peter-murray/workflow-application-token-action@v1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">application_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.BOT_APPLICATION_ID }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">application_private_key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.BOT_APPLICATION_PRIVATE_KEY }}</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+<p>Additionally, you must add the following code for the documentation deployment:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-11-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-11-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-11-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.get_workflow_token.outputs.token }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.tox/doc_out</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-11-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ steps.get_workflow_token.outputs.token }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doc/_build/html</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="deploying-by-using-a-personal-access-token-pat">
+<h5>Deploying by using a personal access token (PAT)<a class="headerlink" href="#deploying-by-using-a-personal-access-token-pat" title="Permalink to this headline">#</a></h5>
+<p>To set up the documentation deployment using a PAT, you
+must first create a PAT in the <code class="docutils literal notranslate"><span class="pre">Settings</span></code> section in your
+GitHub profile. In the left side bar, select the <code class="docutils literal notranslate"><span class="pre">Developer</span> <span class="pre">Settings</span></code> section
+and then <code class="docutils literal notranslate"><span class="pre">Personal</span> <span class="pre">access</span> <span class="pre">tokens</span></code>. Finally, click <code class="docutils literal notranslate"><span class="pre">Generate</span> <span class="pre">new</span> <span class="pre">token</span></code> and
+give it <code class="docutils literal notranslate"><span class="pre">write</span></code> permissions on <code class="docutils literal notranslate"><span class="pre">Repositories</span></code> at least. You are then prompted
+with the value of the <code class="docutils literal notranslate"><span class="pre">TOKEN</span></code>. Make sure to copy the value of the <code class="docutils literal notranslate"><span class="pre">TOKEN</span></code> as
+you are not be able to retrieve it later. Finally, click <code class="docutils literal notranslate"><span class="pre">Configure</span> <span class="pre">SSO</span></code> to
+allow using it with the PyAnsys repositories you have access to.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In some cases, the authentication might need specific approval. If you
+still get authentication errors like those that follow, click the link in
+the log to authorize the workflow.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="hll">remote: The `pyansys&#39; organization has enabled or enforced SAML SSO. To access
+</span><span class="hll">remote: this repository, visit https://github.com/orgs/pyansys/sso?            authorization_request=AGWYQUM5VKPHAQHRS2H3JNTCVBNE7A5PN5ZGOYLONF5GC5DJN5XF62LEZYB663VUVVRX      EZLEMVXHI2LBNRPWSZGOGU33VEFPMNZGKZDFNZ2GSYLML52HS4DFVNHWC5LUNBAWGY3FONZQ
+</span>remote: and try your request again.
+fatal: unable to access &#39;https://github.com/pyansys/pynexus-dev-docs.git/&#39;: The requested URL returned error: 403
+Running post deployment cleanup jobs… 🗑️
+/usr/bin/git checkout -B github-pages-deploy-action/x00pqaqlu
+Reset branch &#39;github-pages-deploy-action/x00pqaqlu&#39;
+/usr/bin/chmod -R 777 github-pages-deploy-action-temp-deployment-folder
+<span class="hll">/usr/bin/git worktree remove github-pages-deploy-action-temp-deployment-folder --force
+</span>Error: The deploy step encountered an error: The process &#39;/usr/bin/git&#39; failed with exit code 128 ❌
+</pre></div>
+</div>
+</div>
+<p>Paste the value of the token in the <code class="docutils literal notranslate"><span class="pre">Settings/Secrets/Actions</span></code> path under a
+new secret named <code class="docutils literal notranslate"><span class="pre">DEPLOY_DOCS_PAT</span></code> in the repository of the project. Use this
+secret in your CI/CD:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-VXNpbmcgYGB0b3hgYA==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tab" tabindex="0">Using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button><button aria-controls="panel-12-V2l0aG91dCB1c2luZyBgYHRveGBg" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tab" tabindex="-1">Without using <code class="docutils literal notranslate"><span class="pre">tox</span></code></button></div><div aria-labelledby="tab-12-VXNpbmcgYGB0b3hgYA==" class="sphinx-tabs-panel group-tab" id="panel-12-VXNpbmcgYGB0b3hgYA==" name="VXNpbmcgYGB0b3hgYA==" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.DEPLOY_DOCS_PAT }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">.tox/doc_out</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-12-V2l0aG91dCB1c2luZyBgYHRveGBg" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-V2l0aG91dCB1c2luZyBgYHRveGBg" name="V2l0aG91dCB1c2luZyBgYHRveGBg" role="tabpanel" tabindex="0"><div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy</span><span class="w"></span>
+<span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.event_name == &#39;push&#39; &amp;&amp; contains(github.ref, &#39;refs/tags&#39;)</span><span class="w"></span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JamesIves/github-pages-deploy-action@v4.3.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.DEPLOY_DOCS_PAT }}</span><span class="w"></span>
+<span class="w">    </span><span class="nt">repository-name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pyansys/repository-name</span><span class="w"></span>
+<span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gh-pages</span><span class="w"></span>
+<span class="w">    </span><span class="nt">folder</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">doc/_build/html</span><span class="w"></span>
+<span class="w">    </span><span class="nt">clean</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="deploying-when-tagging">
+<h4>Deploying when tagging<a class="headerlink" href="#deploying-when-tagging" title="Permalink to this headline">#</a></h4>
+<p>Depending on your preferences, you can choose to update the documentation on
+tags only (as done earlier) or on each push. If you want to have your
+documentation deployed on each push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, change the preceding conditional
+to:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">github.ref == &#39;refs/heads/main&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="accessing-online-documentation">
+<h2>Accessing online documentation<a class="headerlink" href="#accessing-online-documentation" title="Permalink to this headline">#</a></h2>
+<p>Documentation for the latest stable release of a PyAnsys library is accessible
+from its repository. You can generally access the latest development version of
+the documentation tracking the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch by adding the prefix <code class="docutils literal notranslate"><span class="pre">dev.</span></code> to
+the URL for the latest stable release.</p>
+<p>For example, consider PyAEDT documentation:</p>
+<ul class="simple">
+<li><p>The URL for documentation of the latest stable release is <a class="reference external" href="https://aedtdocs.pyansys.com/">https://aedtdocs.pyansys.com/</a>.</p></li>
+<li><p>The URL for documentation of the latest development version is <a class="reference external" href="https://dev.aedtdocs.pyansys.com/">https://dev.aedtdocs.pyansys.com/</a>.</p></li>
+</ul>
+<p>The latest development versions of both the library and its documentation are
+automatically kept up-to-date via GitHub actions.</p>
+<p>To make documentation changes, you create a branch with a name that begins with
+a prefix of <code class="docutils literal notranslate"><span class="pre">doc/</span></code> that is then followed by a short description of what you
+are changing. For more information, see <a class="reference internal" href="releasing.html#branching-model"><span class="std std-ref">Branching model</span></a>.</p>
+<p>As you are making changes in this branch, you want to periodically generate the
+documentation locally so that you can test your changes before you create a
+GitHub pull request. For more information, see <a class="reference internal" href="#building-documentation"><span class="std std-ref">Building documentation</span></a>.</p>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

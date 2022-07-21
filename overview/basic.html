@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>PyAnsys project organization &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project administration" href="administration.html" />
+    <link rel="prev" title="Overview" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../how-to/index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../doc-style/index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Overview</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">PyAnsys project organization</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   PyAnsys project organization
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="administration.html">
+   Project administration
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   PyAnsys project organization
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quick-start-guide">
+   Quick start guide
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="pyansys-project-organization">
+<h1>PyAnsys project organization<a class="headerlink" href="#pyansys-project-organization" title="Permalink to this headline">#</a></h1>
+<p>The <a class="reference external" href="https://docs.pyansys.com/">PyAnsys Project</a> is hosted on GitHub at <a class="reference external" href="https://github.com/pyansys">PyAnsys</a>. It contains several repositories with
+Python libraries that interface with Ansys products or services.
+To try out a library, visit one of these links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pyansys/PyAEDT">PyAEDT</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/DPF-Core">PyDPF-Core</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/DPF-Post">PyDPF-Post</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/pymapdl">PyMAPDL</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/pymapdl-reader">PyMAPDL Legacy Reader</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/pypim">PyPIM</a></p></li>
+</ul>
+<p>If you want to create, develop, or contribute to a PyAnsys library,
+visit these links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pyansys/about">PyAnsys Project Developer’s Guide</a></p></li>
+<li><p><a class="reference external" href="https://github.com/ansys/ansys-sphinx-theme">Ansys Sphinx Theme Documentation</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/pyansys-helloworld">gRPC Hello-world Example</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/example-data">Material Example Data</a></p></li>
+</ul>
+<p>Using the following tools, developers generate library packages from
+PROTO files, create coverage reports, and report on system coverage:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/pyansys/pyansys-protos-generator">pyansys-protos-generator</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/example-coverage">example-coverage</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pyansys/system-reporting-tool">system-reporting-tool</a></p></li>
+</ul>
+</section>
+<section id="quick-start-guide">
+<h1>Quick start guide<a class="headerlink" href="#quick-start-guide" title="Permalink to this headline">#</a></h1>
+<p>This is a brief overview on how to get started right away with your own PyAnsys
+repository on the <a class="reference external" href="https://github.com/pyansys">PyAnsys GitHub Organization</a>. A repository is generally a
+project for a particular PyAnsys library.</p>
+<ol class="arabic">
+<li><p><strong>Create the repository:</strong> Create a repository from the
+<a class="reference external" href="https://github.com/pyansys/template">pyansys/template</a>.  See <a class="reference external" href="https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template">Creating a repository from a template</a>.
+Be sure that the <a class="reference external" href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility">repository visibility</a> is initially private.</p></li>
+<li><p><strong>Rename the package:</strong> Rename <code class="docutils literal notranslate"><span class="pre">ansys/product/library</span></code> to match
+your product or library. For example, the package name for
+PyMAPDL is <code class="docutils literal notranslate"><span class="pre">ansys/mapdl/core</span></code>. Do the
+same renaming in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>. Do this as a pull request. In fact, only add
+code as pull requests. Do not push to <code class="docutils literal notranslate"><span class="pre">main</span></code>.)</p></li>
+<li><p><strong>Add source:</strong> Add your source files to
+<code class="docutils literal notranslate"><span class="pre">ansys/&lt;product&gt;/&lt;library&gt;</span></code> or create them.  Also add unit tests to
+<code class="docutils literal notranslate"><span class="pre">tests/</span></code> following the <a class="reference external" href="https://pytest.org/">pytest</a> convention. Be sure to maintain
+sufficient coverage when adding your library. See <a class="reference external" href="https://pytest-cov.readthedocs.io/en/latest/reporting.html">pytest-cov</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your tests require an active service, app, or product,
+be sure to set up this app to run in an automated manner.</p>
+</div>
+</li>
+<li><p><strong>Update documentation:</strong> The documentation source and content
+vary from repository to repository. In <code class="docutils literal notranslate"><span class="pre">doc/</span></code>, there are folders for
+different types of documentation, which can include guides, examples,
+and API. Ensure that all documentation is updated. See <a class="reference internal" href="../doc-style/index.html#documentation-style"><span class="std std-ref">Documentation style</span></a>.</p></li>
+<li><p><strong>Prepare the package for release:</strong> When you are ready to release
+your package publicly, email <a class="reference external" href="mailto:pyansys&#46;support&#37;&#52;&#48;ansys&#46;com">pyansys<span>&#46;</span>support<span>&#64;</span>ansys<span>&#46;</span>com</a>
+to obtain the release checklist for obtaining official Ansys approval.
+Once you have completed this checklist, change the <a class="reference external" href="https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/setting-repository-visibility">repository visibility</a>
+to public and create a release branch.</p></li>
+</ol>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

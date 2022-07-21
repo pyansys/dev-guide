@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Setting up your development environment &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/tabs.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Supporting Python versions" href="supporting-python-versions.html" />
+    <link rel="prev" title="How-To" href="index.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../overview/index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../doc-style/index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">How-To</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Setting up your development environment</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Setting up your development environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-python-versions.html">
+   Supporting Python versions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributing.html">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="packaging.html">
+   Packaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="documenting.html">
+   Documenting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous-integration.html">
+   Using continuous integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="releasing.html">
+   Releasing and publishing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="repository-protection.html">
+   Repository protection
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python">
+   Python
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#installation">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#verification">
+     Verification
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#virtual-environments">
+   Virtual environments
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#check">
+     Check
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create">
+     Create
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#activate">
+     Activate
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#deactivate">
+     Deactivate
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#git">
+   Git
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Verification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#usage">
+     Usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#configuration">
+     Configuration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#global">
+       Global
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#local">
+       Local
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dynamic">
+       Dynamic
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#signing-commits">
+     Signing commits
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#enabling-ssh">
+     Enabling SSH
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wsl2">
+   WSL2
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Installation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     Verification
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#linux-distribution">
+     Linux distribution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#windows-terminal">
+   Windows terminal
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     Installation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="setting-up-your-development-environment">
+<h1>Setting up your development environment<a class="headerlink" href="#setting-up-your-development-environment" title="Permalink to this headline">#</a></h1>
+<p>Before you can contribute to any PyAnsys project, you must set up
+your developer environment.</p>
+<section id="python">
+<h2>Python<a class="headerlink" href="#python" title="Permalink to this headline">#</a></h2>
+<div align="center">
+  <img src="https://github.com/python/pythondotorg/raw/main/static/community_logos/python-logo-inkscape.svg">
+</div><p>All PyAnsys projects require a Python interpreter for interacting
+with PyAnsys libraries. Therefore, you must ensure that at least one Python
+interpreter is installed on your local machine.</p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">#</a></h3>
+<p>There are multiple ways to install a Python package on your local machine:</p>
+<ul class="simple">
+<li><p>Use an official installer from the <a class="reference external" href="https://www.python.org/downloads/">official Python download section</a>.</p></li>
+<li><p>Install via a package manager or “store” on your machine.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Ensure that you install Python from an official channel. Do not trust
+third-party websites or download executable content from them.</p>
+</div>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-0-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-0-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-0-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-0-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-0-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-0-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>To install Python on a machine running Windows:</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://www.python.org/downloads/windows/">latest stable Python version for Windows</a>.</p></li>
+<li><p>Execute the installer, referring to  <a class="reference external" href="https://docs.python.org/3/using/windows.html">Using Python on
+Windows</a> for
+detailed installation instructions.</p></li>
+</ol>
+</div><div aria-labelledby="tab-0-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>To install Python on a machine running the macOS:</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://www.python.org/downloads/macos/">latest stable Python version for macOS</a>.</p></li>
+<li><p>Execute the installer, referring to <a class="reference external" href="https://docs.python.org/3/using/mac.html">Using Python on
+a Mac</a> for
+detailed installation instructions.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is likely that your macOS distribution already comes with some
+version of Python installed. For more information, see <a class="reference internal" href="#id5"><span class="std std-ref">Verification</span></a>.</p>
+</div>
+</div><div aria-labelledby="tab-0-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-0-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><p>To install Python on a machine running Linux/UNIX:</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://www.python.org/downloads/source/">latest stable Python version for Linux/UNIX</a>.</p></li>
+<li><p>Decompress the source code and follow the installation instructions in the
+<code class="docutils literal notranslate"><span class="pre">README.rst</span></code> file. For more information, see <a class="reference external" href="https://docs.python.org/3/using/unix.html">Using Python on Unix Platforms</a>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is likely that your Linux/UNIX distribution already comes with some
+version of Python installed. For more information, see <a class="reference internal" href="#id5"><span class="std std-ref">Verification</span></a>.</p>
+</div>
+</div></div>
+</section>
+<section id="verification">
+<h3>Verification<a class="headerlink" href="#verification" title="Permalink to this headline">#</a></h3>
+<p>Once your Python installation is complete, verify it with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-1-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-1-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-1-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-1-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-1-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-1-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-2-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-2-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-2-Q01E" class="sphinx-tabs-panel group-tab" id="panel-2-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>py --version
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-2-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-2-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>py --version
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-1-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-1-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="virtual-environments">
+<h2>Virtual environments<a class="headerlink" href="#virtual-environments" title="Permalink to this headline">#</a></h2>
+<p>When working in multiple Python projects, it is likely each of these projects has its
+own requirements. Sometimes, requirements across projects can be incompatible.
+Virtual environments were devised to isolate Python environments, which guarantees
+that you do not face dependency problems when working in multiple projects.</p>
+<p>For information on the most fundamental commands for manipulating and
+interacting with a Python virtual environment, see the <a class="reference external" href="https://docs.python.org/3/library/venv.html">official Python documentation on
+the venv module</a>.</p>
+<section id="check">
+<h3>Check<a class="headerlink" href="#check" title="Permalink to this headline">#</a></h3>
+<p>Before creating a new virtual environment, you must run this code to see if you are already
+working with one:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-3-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-3-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-3-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-3-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-3-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-3-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-4-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-4-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-4-Q01E" class="sphinx-tabs-panel group-tab" id="panel-4-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>where.exe python
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-4-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-4-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>where.exe python
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-3-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>which python
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-3-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-3-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>which python
+</pre></div>
+</div>
+</div></div>
+<p>This command returns the path to the Python virtual environment that your system is currently using.</p>
+<p>Ensure that it points to your default installation and not to a virtual
+environment. If it points to a virtual environment, see <a class="reference internal" href="#deactivate"><span class="std std-ref">Deactivate</span></a> for
+information on deactivating your virtual environment.</p>
+</section>
+<section id="create">
+<h3>Create<a class="headerlink" href="#create" title="Permalink to this headline">#</a></h3>
+<p>Usually, virtual environments are named <code class="docutils literal notranslate"><span class="pre">venv</span></code> or <code class="docutils literal notranslate"><span class="pre">.venv</span></code>.
+You can create a virtual environment named <cite>&lt;venv&gt;</cite> with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-5-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-5-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-5-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-5-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-5-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-5-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-6-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-6-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-6-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-6-Q01E" class="sphinx-tabs-panel group-tab" id="panel-6-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>py -m venv &lt;venv&gt;
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-6-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-6-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>py -m venv &lt;venv&gt;
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-5-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python -m venv &lt;venv&gt;
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-5-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-5-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>python -m venv &lt;venv&gt;
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="activate">
+<h3>Activate<a class="headerlink" href="#activate" title="Permalink to this headline">#</a></h3>
+<p>You would activate the preceding virtual environment with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-7-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-7-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-7-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-7-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-7-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-7-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-8-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-8-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-8-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-8-Q01E" class="sphinx-tabs-panel group-tab" id="panel-8-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;venv&gt;\Scripts\activate.bat
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-8-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-8-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&lt;venv&gt;\Scripts\Activate.ps1
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-7-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source &lt;venv&gt;/bin/activate
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-7-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-7-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>source &lt;venv&gt;/bin/activate
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="deactivate">
+<h3>Deactivate<a class="headerlink" href="#deactivate" title="Permalink to this headline">#</a></h3>
+<p>You would deactivate a virtual environment with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-9-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-9-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-9-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-9-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-9-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-9-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-10-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-10-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-10-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-10-Q01E" class="sphinx-tabs-panel group-tab" id="panel-10-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-10-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-10-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-9-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-9-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-9-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>deactivate
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="git">
+<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">#</a></h2>
+<div align="center">
+  <img src="https://github.com/git/git-scm.com/raw/main/public/images/logo%402x.png">
+  <br><br>
+</div><p><a class="reference external" href="https://git-scm.com/">Git</a> is an open source version control system (VCS). It
+is used to track changes and register new content in software-related projects. Git
+registers the author and date of the changes so that accurate tracking of the
+software’s evolution is available.</p>
+<section id="id2">
+<h3>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-11-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-11-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-11-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-11-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-11-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-11-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><p>To install Git on a machine running Windows:</p>
+<ol class="arabic simple">
+<li><p>Download the <a class="reference external" href="https://git-scm.com/download/win">latest stable standalone Git version for Windows</a>.</p></li>
+<li><p>Execute the installer and follow the installation instructions.</p></li>
+</ol>
+</div><div aria-labelledby="tab-11-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><p>To install Git on a machine running the macOS:</p>
+<ol class="arabic simple">
+<li><p>Check the <a class="reference external" href="https://git-scm.com/download/mac">latest stable Git version for macOS</a>.</p></li>
+<li><p>Run the installation command for your package manager.</p></li>
+</ol>
+</div><div aria-labelledby="tab-11-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-11-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><p>To install Git on a machine running Linux/UNIX:</p>
+<ol class="arabic simple">
+<li><p>Check the <a class="reference external" href="https://git-scm.com/download/linux">latest stable Git version for Linux/UNIX</a>.</p></li>
+<li><p>Run the installation command for your package manager.</p></li>
+</ol>
+</div></div>
+</section>
+<section id="id3">
+<h3>Verification<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<p>Once your installation process is complete, verify your Git installation with:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-V2luZG93cw==" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-12-V2luZG93cw==" name="V2luZG93cw==" role="tab" tabindex="0">Windows</button><button aria-controls="panel-12-bWFjT1M=" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-bWFjT1M=" name="bWFjT1M=" role="tab" tabindex="-1">macOS</button><button aria-controls="panel-12-TGludXgvVU5JWA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-12-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tab" tabindex="-1">Linux/UNIX</button></div><div aria-labelledby="tab-12-V2luZG93cw==" class="sphinx-tabs-panel group-tab" id="panel-12-V2luZG93cw==" name="V2luZG93cw==" role="tabpanel" tabindex="0"><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-Q01E" aria-selected="true" class="sphinx-tabs-tab group-tab" id="tab-13-Q01E" name="Q01E" role="tab" tabindex="0">CMD</button><button aria-controls="panel-13-UG93ZXJTaGVsbA==" aria-selected="false" class="sphinx-tabs-tab group-tab" id="tab-13-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tab" tabindex="-1">PowerShell</button></div><div aria-labelledby="tab-13-Q01E" class="sphinx-tabs-panel group-tab" id="panel-13-Q01E" name="Q01E" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git --version
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-13-UG93ZXJTaGVsbA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-13-UG93ZXJTaGVsbA==" name="UG93ZXJTaGVsbA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git --version
+</pre></div>
+</div>
+</div></div>
+</div><div aria-labelledby="tab-12-bWFjT1M=" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-bWFjT1M=" name="bWFjT1M=" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git --version
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-12-TGludXgvVU5JWA==" class="sphinx-tabs-panel group-tab" hidden="true" id="panel-12-TGludXgvVU5JWA==" name="TGludXgvVU5JWA==" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>git --version
+</pre></div>
+</div>
+</div></div>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">#</a></h3>
+<p>If you are not familiar with Git, see the <a class="reference external" href="https://git-scm.com/doc">Git Reference Manual</a>.
+for comprehensive information on how to use it.</p>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">#</a></h3>
+<p>It is very important to properly configure Git so that every modification that you make
+to the code points to you. There are two types of configuration:
+<a class="reference internal" href="#global"><span class="std std-ref">Global</span></a> and <a class="reference internal" href="#local"><span class="std std-ref">Local</span></a>. It is also possible to combine both to have
+a <a class="reference internal" href="#dynamic"><span class="std std-ref">Dynamic</span></a> configuration.</p>
+<section id="global">
+<h4>Global<a class="headerlink" href="#global" title="Permalink to this headline">#</a></h4>
+<p>Global configuration are automatically included in every Git repository on
+your machine unless overridden by a <a class="reference internal" href="#local"><span class="std std-ref">Local</span></a> configuration, which
+is located in <code class="docutils literal notranslate"><span class="pre">C:\Users\&lt;username&gt;\.gitconfig</span></code> for Windows users or in
+<code class="docutils literal notranslate"><span class="pre">/home/&lt;username&gt;/.gitconfig</span></code> for macOS, Linux, or UNIX users.</p>
+<p>You can set the value for any variable in a field with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global &lt;field&gt;.&lt;varname&gt; &lt;value&gt;
+</pre></div>
+</div>
+<p>Some examples follow.</p>
+<p><strong>Set up your name</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name &lt;Your Name&gt;
+</pre></div>
+</div>
+<p><strong>Set up your email</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.email &lt;Ansys Email&gt;
+</pre></div>
+</div>
+<p><strong>Set up the default branch name</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global init.defaultBranch main
+</pre></div>
+</div>
+</section>
+<section id="local">
+<h4>Local<a class="headerlink" href="#local" title="Permalink to this headline">#</a></h4>
+<p>There might be a time when you want to declare a specific configuration to use only
+in a given project. To override the <a class="reference internal" href="#global"><span class="std std-ref">Global</span></a> configuration, you can declare a local
+configuration.</p>
+<p>In a local configuration, the commands are the same as in the <a class="reference internal" href="#global"><span class="std std-ref">Global</span></a> configuration. The
+one exception is that instead of using the <code class="docutils literal notranslate"><span class="pre">--global</span></code> flag, you use the <code class="docutils literal notranslate"><span class="pre">--local</span></code> flag.
+Ensure that you run the commands in the root directory of your project and that a <code class="docutils literal notranslate"><span class="pre">.git/</span></code>
+folder exists.</p>
+<p>If you would like to manually modify your local configuration, it is saved in
+the <code class="docutils literal notranslate"><span class="pre">.git/config</span></code> file.</p>
+</section>
+<section id="dynamic">
+<h4>Dynamic<a class="headerlink" href="#dynamic" title="Permalink to this headline">#</a></h4>
+<p>It is possible to configure <a class="reference internal" href="#git"><span class="std std-ref">Git</span></a> such that it selects between multiple
+configuration profiles according to whether your project is located in your system.
+This allows you to define common configurations for working under <code class="docutils literal notranslate"><span class="pre">PyAnsys</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Ansys</span></code>, or open source projects from which the company benefits.</p>
+<p>As an example, consider the following scenario for setting up two <a class="reference internal" href="#git"><span class="std std-ref">Git</span></a>
+configuration profiles for working with <code class="docutils literal notranslate"><span class="pre">Ansys</span></code> and personal projects.</p>
+<p>Create the two files, naming them so that they are easily distinguishable. For
+example, <code class="docutils literal notranslate"><span class="pre">.gitconfig-ansys</span></code> and <code class="docutils literal notranslate"><span class="pre">.gitconfig-personal</span></code>. Then, use <a class="reference external" href="https://git-scm.com/docs/git-config#_conditional_includes">Git
+Conditional Includes</a> to control which
+<a class="reference internal" href="#git"><span class="std std-ref">Git</span></a> configuration is applied based on whether the project is located in
+your system.</p>
+<p>Each one of these files can look like this:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-14-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-14-14-0" name="14-0" role="tab" tabindex="0">.gitconfig</button><button aria-controls="panel-14-14-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-14-14-1" name="14-1" role="tab" tabindex="-1">.gitconfig-ansys</button><button aria-controls="panel-14-14-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-14-14-2" name="14-2" role="tab" tabindex="-1">.gitconfig-personal</button></div><div aria-labelledby="tab-14-14-0" class="sphinx-tabs-panel" id="panel-14-14-0" name="14-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[includeIf &quot;gitdir:path/to/your/ansys/folder/of/projects&quot;]
+  path = path/to/.gitconfig-ansys
+
+[includeIf &quot;gitdir:path/to/your/personal/folder/of/projects&quot;]
+  path = path/to/.gitconfig-personal
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-14-14-1" class="sphinx-tabs-panel" hidden="true" id="panel-14-14-1" name="14-1" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[user]
+
+  name = &lt;Ansys Name&gt;
+  email = &lt;Ansys Email&gt;
+  signingkey = &lt;Ansys GPG Key&gt;
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-14-14-2" class="sphinx-tabs-panel" hidden="true" id="panel-14-14-2" name="14-2" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[user]
+
+  name = &lt;Name or Nickname&gt;
+  email = &lt;Personal Email&gt;
+  signingkey = &lt;Personal GPG Key&gt;
+</pre></div>
+</div>
+</div></div>
+</section>
+</section>
+<section id="signing-commits">
+<h3>Signing commits<a class="headerlink" href="#signing-commits" title="Permalink to this headline">#</a></h3>
+<p>To verify which code changes were made by you, signing the commit
+is required. To sign a commit, you must generate a <code class="docutils literal notranslate"><span class="pre">GPG</span></code> key, associate it with
+<code class="docutils literal notranslate"><span class="pre">GitHub</span></code>, and specify it in your <code class="docutils literal notranslate"><span class="pre">Git</span></code> <a class="reference internal" href="#configuration"><span class="std std-ref">Configuration</span></a>.</p>
+<p>For an explanation of the process, in the <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> documentation, see <a class="reference external" href="https://docs.github.com/en/authentication/managing-commit-signature-verification">Verify
+Commit Signatures</a>.</p>
+</section>
+<section id="enabling-ssh">
+<h3>Enabling SSH<a class="headerlink" href="#enabling-ssh" title="Permalink to this headline">#</a></h3>
+<p>Working with <code class="docutils literal notranslate"><span class="pre">Secure</span> <span class="pre">Shell</span> <span class="pre">Protocol</span> <span class="pre">(SSH)</span></code> is not only a good practice but
+also required for contributing to PyAnsys projects. Without an <code class="docutils literal notranslate"><span class="pre">SSH</span></code> key,
+you are not able to clone <em>internal</em> or <em>private</em> repositories or
+to push new changes.</p>
+<p>For information on setting up <code class="docutils literal notranslate"><span class="pre">SSH</span></code> with <code class="docutils literal notranslate"><span class="pre">GitHub</span></code>, in the <code class="docutils literal notranslate"><span class="pre">GitHub</span></code> documentation,
+see <a class="reference external" href="https://docs.github.com/en/authentication/connecting-to-github-with-ssh">Connecting to GitHub with SSH</a>.</p>
+</section>
+</section>
+<section id="wsl2">
+<h2>WSL2<a class="headerlink" href="#wsl2" title="Permalink to this headline">#</a></h2>
+<p>Some developers prefer using Windows as the operating system for their machines.
+However, they might like to take advantage of some features provided by a Linux
+operating system. The <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/install">Windows Subsystem for Linux</a> was devised to solve
+this problem.</p>
+<section id="id4">
+<h3>Installation<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p>Open a new PowerShell session and install the Windows Subsystem for Linux
+(WSL) with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span>
+</pre></div>
+</div>
+<p>After installing WSL, ensure that you are running the WSL2 version with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-set-default-version</span> <span class="n">2</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Verification<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>Verify your WSL version with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-list</span> <span class="n">-v</span>
+</pre></div>
+</div>
+</section>
+<section id="linux-distribution">
+<h3>Linux distribution<a class="headerlink" href="#linux-distribution" title="Permalink to this headline">#</a></h3>
+<p>After WSL2 is installed, install a Linux distribution.
+Get a list of available distributions with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-list</span> <span class="p">-</span><span class="n">-online</span>
+</pre></div>
+</div>
+<p>Most developers choose <a class="reference external" href="https://ubuntu.com/download">Ubuntu</a> because it is a
+well maintained Linux distribution with a huge collection of packages.</p>
+<p>Install the Linux distribution of your choice with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="p">-</span><span class="n">-install</span> <span class="n">-d</span> <span class="p">&lt;</span><span class="n">distribution</span> <span class="n">name</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>You can use this command to install multiple Linux distributions. Indicate
+the distributions that you would like to use with WSL2 with:</p>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">wsl</span> <span class="n">-d</span> <span class="p">&lt;</span><span class="n">distribution</span> <span class="n">name</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="windows-terminal">
+<h2>Windows terminal<a class="headerlink" href="#windows-terminal" title="Permalink to this headline">#</a></h2>
+<img alt="The Windows Terminal with different active shell sessions." class="align-center" src="../_images/windows_terminal.png" />
+<br><p>The <a class="reference external" href="https://docs.microsoft.com/en-us/windows/terminal/">Windows Terminal</a> is
+an app that integrates multiple shells into a single console. Windows
+ships by default with two shells: <code class="docutils literal notranslate"><span class="pre">CMD</span></code> and <code class="docutils literal notranslate"><span class="pre">PowerShell</span></code>. If <a class="reference internal" href="#wsl2"><span class="std std-ref">WSL2</span></a> is
+installed, a Linux shell is added. Hence, the goal of the <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Terminal</span></code>
+is to collect and manage all shell sessions in a single program.</p>
+<section id="id7">
+<h3>Installation<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<p>You can install <code class="docutils literal notranslate"><span class="pre">Windows</span> <span class="pre">Terminal</span></code> directly from the <a class="reference external" href="https://apps.microsoft.com/store/detail/windows-terminal/9N0DX20HK701?hl=en-us&amp;gl=US">official Microsoft Store package</a>.</p>
+</section>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,417 @@
+/* Provided by the Sphinx base theme template at build time */
+@import "../basic.css";
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap');
+
+
+@font-face {
+    font-family: "Source Sans Pro Light";
+    src: url(../fonts/SourceSansPro-Light.ttf);
+}
+
+@font-face {
+    font-family: "Source Sans Pro";
+    src: url(../fonts/SourceSansPro-Regular.ttf);
+}
+
+:root {
+  /* Ansys specific changes to the theme */
+
+  /*****************************************************************************
+  * Ansys Font family
+  **/
+  /* These are adapted from https://systemfontstack.com/ */
+  --pst-font-family-base-system: -apple-system, BlinkMacSystemFont, Segoe UI, "Helvetica Neue",
+    Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  --pst-font-family-monospace-system: "SFMono-Regular", Menlo, Consolas, Monaco,
+    Liberation Mono, Lucida Console, monospace;
+
+  --pst-font-family-base: 'Source Sans Pro', sans-serif, var(--pst-font-family-base-system);
+  --pst-font-family-heading: 'Source Sans Pro', sans-serif, var(--pst-font-family-base-system);
+  --pst-font-family-monospace: Courier, var(--pst-font-family-monospace-system);
+
+  /*****************************************************************************
+  * Ansys compatible colors
+  * 
+  * Colors are defined in rgb string way, "red, green, blue"
+  **/
+  --ansysGold: 255, 183, 27; /* #FFB71B */
+  --ansysBronze: 200, 146, 17; /* #C89211 */
+  --pythonBlue: 57, 114, 161; /* #3972a1 */
+
+  --pst-color-active-navigation: 200, 146, 17;  /* --ansysBronze */
+  --pst-color-navbar-link: 255, 255, 255;
+  --pst-color-navbar-link-hover: 255, 183, 27;  /* --ansysBronze */
+  --pst-color-navbar-link-active: 255, 183, 27;  /* --ansysBronze */
+
+}
+
+html[data-theme="light"] {
+  /*****************************************************************************
+  * main colors
+  */
+  --pst-color-primary: rgb(255, 183, 27);
+  --pst-color-secondary: rgb(200, 146, 17);
+  --pst-color-success: rgb(40, 167, 69);
+  --pst-color-text-base: rgb(51, 51, 51);
+  --pst-color-text-muted: rgb(26, 24, 24);
+  --pst-color-border: rgb(201, 201, 201);
+  --pst-color-shadow: rgb(216, 216, 216);
+
+  /*****************************************************************************
+  * depth colors
+  *
+  * background: the more in depth color
+  * on-background: the object directly set on the background, use of shadows in light theme
+  * surface: object set on the background (without shadows)
+  * on_surface: object set on surface object (without shadows)
+  */
+  --pst-color-on-background: rgb(0, 0, 0);
+  --pst-color-on-surface: rgb(255, 255, 255);
+
+  /*****************************************************************************
+  * extensions
+  */
+
+  --pst-color-panel-background: var(--pst-color-on-background);
+
+  /*****************************************************************************
+  * layout
+  */
+
+  --pst-color-link: rgb( 57, 114, 161);
+  --pst-color-link-hover: #005B81;
+  --pst-color-inline-code: rgb(232, 62, 140);
+  --pst-color-target: rgb(255, 255, 255);
+}
+
+html[data-theme="dark"] {
+  /*****************************************************************************
+  * main colors
+  */
+  --pst-color-primary: rgb(255, 183, 27);
+  --pst-color-secondary: rgb(200, 146, 17);
+  --pst-color-success: rgb(72, 135, 87);
+  --pst-color-text-base: rgb(201, 209, 217);
+  --pst-color-text-muted: rgb(192, 192, 192);
+  --pst-color-border: rgb(192, 192, 192);
+  --pst-color-shadow: var(--pst-color-background);
+  --pst-color-background: rgb(18, 18, 18);
+  --pst-color-on-background: rgb(0, 0, 0);
+  --pst-color-surface: rgb(41, 41, 41);
+  --pst-color-on-surface: rgb(55, 55, 55);
+
+  /*****************************************************************************
+  * extensions
+  */
+
+  --pst-color-panel-background: var(--pst-color-on-background);
+
+  /*****************************************************************************
+  * layout
+  */
+
+  --pst-color-link: rgb( 57, 114, 161);
+  --pst-color-link-hover: #005B81;
+  --pst-color-inline-code: rgb(221, 158, 194);
+  --pst-color-target: rgb(71, 39, 0);
+}
+
+.admonition, div.admonition{
+  background-color:var( --pst-color-on-surface);
+}
+
+.bd-header.navbar-light#navbar-main .navbar-nav li a.nav-link {
+  color:#ffffff;
+}
+
+.docutils {
+    color: #C89211;
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-size: 107%;
+}
+
+.xref.std.std-ref {
+    color: #C89211;
+    font-family: 'Inconsolata';
+    font-weight: bold;
+    font-style: italic;
+    font-size: 107%;
+}
+
+.sig-prename {
+    color: #C89211;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.sig-name.descname {
+    color: #C89211;
+    /* font-family: '   Source Sans Pro', sans-serif; */
+}
+
+.sig-name {
+    color: #C89211;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* make the github logo white */
+i.fa-github-square:before {
+    color: #ffffff !important;
+}
+
+/* Increase empty-space around classes, methods, properties, etc. that are descendants
+ of other items */
+dl.class dl.py {
+    margin-top: 2.5em;
+    margin-bottom: 2.5em;
+}
+
+/* Reduce empty-space around Notes and Examples headings */
+p.rubric {
+    margin-top: 0.75em;
+    margin-bottom: 0.75em;
+}
+
+
+
+/*
+###############
+   table 
+###############
+*/
+
+table {
+  width:100%;
+  max-width: 100%; 
+  border-spacing: 0;
+  border-collapse: collapse;
+  overflow: hidden;
+  vertical-align: middle;
+
+  /* Disabling scroll bars */
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+
+tr { 
+  background-color: var(--pst-color-background);
+}
+
+th {
+  background-color: rgb(255, 183, 27, 0.55);
+}
+
+tr:nth-child(odd){ 
+  background-color: var(--pst-color-background);
+}
+
+tr:nth-child(even){
+background-color: rgb(255, 183, 27, 0.15); 
+}
+
+/*
+#####################
+   Table-centered 
+#####################
+Same as table but with horizontally centered text.
+
+
+Use as:
+
+.. table:: 
+  :class: table-centered
+
+  +---------------------------+-------------------+
+  |                           | MAPDL Command     |
+  +===========================+===================+
+  | **GUI commands**          | * ``*ASK``        |
+  |                           +-------------------+
+  |   ...
+  |   ...
+
+
+*/
+table.table-centered {
+  width:100%;
+  max-width: 100%; 
+  border-spacing: 0;
+  border-collapse: collapse;
+  overflow: hidden;
+  vertical-align: middle;
+  text-align: center;
+
+  /* Disabling scroll bars */
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+
+.table-centered tr { 
+  background-color: var(--pst-color-background);
+  text-align: center;
+}
+
+.table-centered th {
+  background-color: rgb(255, 183, 27, 0.55);
+  text-align: center;
+}
+
+.table-centered tr:nth-child(odd){ 
+  text-align: center;
+  background-color: var(--pst-color-background);
+}
+
+.table-centered tr:nth-child(even){
+  background-color: rgb(255, 183, 27, 0.15); 
+  text-align: center;
+}
+
+
+/*
+###############
+   longtable 
+###############
+*/
+
+table.longtable tr:hover td {
+  background-color: rgb(255, 183, 27, 0.6);
+}
+
+/*
+#########################
+   longtable-centered
+#########################
+
+Use as:
+
+
+.. table:: 
+  :class: longtable-centered
+
+  +---------------------------+-------------------+
+  |                           | MAPDL Command     |
+  +===========================+===================+
+  | **GUI commands**          | * ``*ASK``        |
+  |                           +-------------------+
+  |   ...
+  |   ...
+
+*/
+
+table.longtable-centered {
+  text-align: center;
+  }
+
+.longtable-centered tr { 
+  text-align: center;
+}
+
+.longtable-centered th {
+  text-align: center;
+}
+
+.longtable-centered tr:nth-child(odd){ 
+  text-align: center;
+}
+
+.longtable-centered tr:nth-child(even){
+  text-align: center;
+}
+
+table.longtable-centered tr:hover td {
+  background-color: rgb(255, 183, 27, 0.6);
+  text-align: center;
+}
+
+/*
+##############
+   DataFrame
+##############
+Not sure why the odd columns (white) are rendered gray.
+
+I do not think we will be able to call this class.
+*/
+
+.dataframe tr{ 
+    background-color: var(--pst-color-background);
+  }
+
+.dataframe tr:nth-child(odd){ 
+    background-color: var(--pst-color-background) !important;
+  }
+
+.dataframe tr:nth-child(even){
+  background-color: rgb(255, 183, 27, 0.15);
+}
+
+.dataframe tr:hover td {
+  background-color: rgb(255, 183, 27, 0.6);
+}
+
+
+/*
+#########################
+   DataFrame-centered
+#########################
+Not sure why the odd columns (white) are rendered gray.
+
+I do not think we will be able to call this class.
+*/
+
+.dataframe-centered tr{ 
+    background-color: var(--pst-color-background);
+    text-align: center;
+  }
+
+.dataframe-centered tr:nth-child(odd){ 
+    background-color: var(--pst-color-background) !important;  
+    text-align: center;
+  }
+
+.dataframe-centered tr:nth-child(even){
+  background-color: rgb(255, 183, 27, 0.15);
+  text-align: center;
+}
+
+.dataframe-centered tr:hover td {
+  background-color: rgb(255, 183, 27, 0.6);
+  text-align: center;
+}
+
+.dataframe thead th {
+    text-align: center;
+}
+
+
+
+/*
+###############
+   Autosummary 
+###############
+*/
+/* .autosummary {
+        text-align: left;
+        } */
+
+.autosummary  tr:nth-child(odd){ 
+    background-color: var(--pst-color-background);
+  }
+
+.autosummary tr:nth-child(even){
+  background-color: var(--pst-color-background);
+}
+
+
+/*
+########################
+   ReST :download: links
+########################
+*/
+a > code.download
+{
+    font-family: var(--pst-font-family-base);
+    color: var(--pst-color-link);
+    text-decoration: none;
+    font-weight: normal;
+}

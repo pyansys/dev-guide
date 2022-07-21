@@ -1,0 +1,19 @@
+#breadcrumbs{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 3rem;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+
+}
+
+#breadcrumbs-spacer{
+  border-right: 1px solid rgba(0,0,0,.1);
+}
+
+div.related > ul {
+    padding-left: 0;
+}
+
+body {
+    padding-top: var(--pst-header-height);
+}

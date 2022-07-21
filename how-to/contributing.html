@@ -1,0 +1,607 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Contributing &#8212; PyAnsys Developer&#39;s Guide</title>
+    
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/ansys_sphinx_theme.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    
+        <link href="../_static/css/breadcrumbs.css" rel="stylesheet">
+    
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Packaging" href="packaging.html" />
+    <link rel="prev" title="Supporting Python versions" href="supporting-python-versions.html" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="None">
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/pyansys-logo-black-cropped.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../overview/index.html">
+  Overview
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  How-To
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packaging/index.html">
+  Packaging style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../coding-style/index.html">
+  Coding style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../doc-style/index.html">
+  Documentation style
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../abstractions/index.html">
+  Abstractions
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/pyansys/dev-guide" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+    
+        <div class="container-xl">
+    <div class="row">
+        <div class="col-12 col-md-3" id="breadcrumbs-spacer"></div>
+        <div class="col-12 col-md-11 col-xl-9" id="breadcrumbs">
+          
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    
+        <li class="nav-item nav-item-additional-breadcrumb"><a href="https://docs.pyansys.com/">PyAnsys</a> » </li>
+    
+    
+        <li class="nav-item nav-item-0"><a href="../index.html">PyAnsys Developer's Guide</a> » </li>
+    
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">How-To</a> » </li>
+        <li class="nav-item nav-item-this"><a href="">Contributing</a></li> 
+      </ul>
+    </div>
+        </div>
+  </div>
+</div>
+    
+
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="setting-up.html">
+   Setting up your development environment
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="supporting-python-versions.html">
+   Supporting Python versions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Contributing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="packaging.html">
+   Packaging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="logging.html">
+   Logging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="documenting.html">
+   Documenting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="testing.html">
+   Testing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous-integration.html">
+   Using continuous integration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="releasing.html">
+   Releasing and publishing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="repository-protection.html">
+   Repository protection
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-github-account">
+   Creating a GitHub account
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#github-repository-sections">
+   GitHub repository sections
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-an-issue">
+   Creating an issue
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#requesting-new-features">
+     Requesting new features
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reporting-bugs">
+     Reporting bugs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forking-a-repository">
+   Forking a repository
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cloning-a-repository">
+   Cloning a repository
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cloning-using-ssh">
+     Cloning using SSH
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#installing-in-editable-mode">
+   Installing in editable mode
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-branch">
+   Creating a branch
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#branch-naming-conventions">
+     Branch naming conventions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pushing-a-new-branch">
+   Pushing a new branch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-a-pull-request">
+   Creating a pull request
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-github-cli">
+   Using GitHub CLI
+  </a>
+ </li>
+</ul>
+
+</nav>
+    </div>
+    
+    <div class="toc-item">
+      
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+  <section id="contributing">
+<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h1>
+<p>Before contributing to a PyAnsys repository, you must understand the general
+coding paradigms being used for PyAnsys development.</p>
+<ol class="arabic simple">
+<li><p>Follow the <a class="reference external" href="https://www.python.org/dev/peps/pep-0020/">Zen of Python</a>.
+As silly as core Python developers are sometimes, there’s much to be
+gained by following the basic guidelines listed in PEP 20. As suggested
+in these guidelines, focus on making your additions intuitive, novel,
+and helpful for PyAnsys users. When in doubt, use <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">this</span></code>.
+For Ansys code quality standards, see <a class="reference internal" href="../coding-style/index.html#coding-style"><span class="std std-ref">Coding style</span></a>.</p></li>
+<li><p>Document your contributions. Include a docstring for any added function,
+method, or class, following <a class="reference internal" href="../doc-style/docstrings.html#numpydoc-docstrings"><span class="std std-ref">Numpydoc docstrings</span></a> as specified by
+PyAnsys <a class="reference internal" href="../doc-style/index.html#documentation-style"><span class="std std-ref">Documentation style</span></a>. Always provide at least one simple use
+case for a new feature.</p></li>
+<li><p>Test your contribution. Because Python is an interpreted language, if
+it’s not tested, it’s probably broken. At the minimum, include a unit
+test for each new feature within the <code class="docutils literal notranslate"><span class="pre">tests</span></code> directory. Ensure that
+each new method, class, or function has a reasonable (&gt;80%) coverage.
+For information about automated testing, see <a class="reference internal" href="testing.html#testing"><span class="std std-ref">Testing</span></a>.</p></li>
+<li><p>Do not include any datasets for which a license is not available
+or commercial use is prohibited.</p></li>
+<li><p>Review the Ansys <a class="reference external" href="https://github.com/pyansys/.github/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a>.</p></li>
+</ol>
+<p>All <code class="docutils literal notranslate"><span class="pre">PyAnsys</span></code> projects are hosted in <a class="reference external" href="https://www.github.com/">GitHub</a> in
+the form of <a class="reference internal" href="setting-up.html#git"><span class="std std-ref">Git</span></a> repositories. GitHub is a platform that not only provides
+storage for projects but also additional features like code reviews or issue
+boards.</p>
+<br>
+<div align="center">
+  <img width="50%;" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png">
+</div><section id="creating-a-github-account">
+<h2>Creating a GitHub account<a class="headerlink" href="#creating-a-github-account" title="Permalink to this headline">#</a></h2>
+<p>To use GitHub, start by creating an account for the platform. Follow the
+<a class="reference external" href="https://github.com/join">GitHub Join Process</a>. If you require access to the
+<a class="reference external" href="https://github.com/pyansys">PyAnsys Organization</a>, email your request to <a class="reference external" href="mailto:alexander&#46;kaszynski&#37;&#52;&#48;ansys&#46;com">Alexander
+Kaszynski</a>.</p>
+</section>
+<section id="github-repository-sections">
+<h2>GitHub repository sections<a class="headerlink" href="#github-repository-sections" title="Permalink to this headline">#</a></h2>
+<p>Once you have a GitHub account and access to the <cite>PyAnsys</cite> organization,
+you are able to interact with the different repositories. While each
+repository contains all tabbed sections that are shown and described below,
+your access level determines tabbed sections you can see.</p>
+<figure class="align-center">
+<img alt="GitHub repository sections" src="../_images/github_sections.png" />
+</figure>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Code</span></code>: Tree view of the project’s structure</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Issues</span></code>: Posts noting issues or requesting new features</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pull</span> <span class="pre">requests</span></code>: Code changes either awaiting review or merging or already closed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Discussions</span></code>: Exchanges about development practices with project maintainers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Actions</span></code>: Available CI/CD workflows</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Projects</span></code>: Plans for organizing and developing the repository</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Wiki</span></code>: Basic project information</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Security</span></code>: Configurations related to security issues, vulnerabilities, and alerts</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Insights</span></code>: General information about the repository and its contributors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Settings</span></code>: Configurations for access and integration with third-party tools</p></li>
+</ul>
+</section>
+<section id="creating-an-issue">
+<h2>Creating an issue<a class="headerlink" href="#creating-an-issue" title="Permalink to this headline">#</a></h2>
+<p>You create an issue to either report a bug or request help or a new feature. Commenting
+allows you to interact with other users, developers, and project maintainers.</p>
+<p>To open an issue, select the <code class="docutils literal notranslate"><span class="pre">Issues</span></code> tab in the <a class="reference internal" href="#github-repository-sections"><span class="std std-ref">GitHub repository sections</span></a> and click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Issue</span></code>. Then, select a template for the type of issue
+to open.</p>
+<p>GitHub issues require the usage of Markdown files instead of ReStructured Text
+files. For more information, see <a class="reference external" href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">Basic writing and formatting syntax</a>.</p>
+<section id="requesting-new-features">
+<h3>Requesting new features<a class="headerlink" href="#requesting-new-features" title="Permalink to this headline">#</a></h3>
+<p>If you would like a new feature to be added to a PyAnsys library, you open a
+new issue and select either the template for code enhancements or a
+feature idea. In the issue, you then do the following:</p>
+<ul class="simple">
+<li><p>Describe the main goal of the feature that you’d like to have added and why it is beneficial
+to the project.</p></li>
+<li><p>Describe how this feature might possibly be implemented and the steps that should be
+followed.</p></li>
+<li><p>Add any references that could help during the development process.</p></li>
+</ul>
+</section>
+<section id="reporting-bugs">
+<h3>Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">#</a></h3>
+<p>If you encounter a bug in the code, you open a new issue and select the template
+for creating a bug report. In the bug report, try to:</p>
+<ul class="simple">
+<li><p>Indicate the operating system, Python version, and library version that you are using.</p></li>
+<li><p>Include a small piece of code to allow others to reproduce the bug you found.</p></li>
+<li><p>Add any additional information that you consider useful for fixing the bug.</p></li>
+</ul>
+</section>
+</section>
+<section id="forking-a-repository">
+<h2>Forking a repository<a class="headerlink" href="#forking-a-repository" title="Permalink to this headline">#</a></h2>
+<p>Forking a repository is like copying and pasting a project into your own GitHub
+profile. Notice that only <code class="docutils literal notranslate"><span class="pre">public</span></code> labeled repositories can be forked. You
+cannot fork a repository labeled as <code class="docutils literal notranslate"><span class="pre">internal</span></code> or <code class="docutils literal notranslate"><span class="pre">private</span></code>.</p>
+<p>To fork a repository, click the <code class="docutils literal notranslate"><span class="pre">Fork</span></code> button at the top of the project’s
+<code class="docutils literal notranslate"><span class="pre">Code</span></code> tabbed section.</p>
+</section>
+<section id="cloning-a-repository">
+<h2>Cloning a repository<a class="headerlink" href="#cloning-a-repository" title="Permalink to this headline">#</a></h2>
+<p>Cloning a repository means downloading it to your local machine. While there are two ways of
+doing this (<code class="docutils literal notranslate"><span class="pre">HTTPS</span></code> or <code class="docutils literal notranslate"><span class="pre">SSH</span></code>), to force the usage of <code class="docutils literal notranslate"><span class="pre">SSH</span></code>, only this method is explained.</p>
+<section id="cloning-using-ssh">
+<h3>Cloning using SSH<a class="headerlink" href="#cloning-using-ssh" title="Permalink to this headline">#</a></h3>
+<p>Cloning using <code class="docutils literal notranslate"><span class="pre">SSH</span></code> requires <a class="reference internal" href="setting-up.html#enabling-ssh"><span class="std std-ref">Enabling SSH</span></a>. After that, you can
+clone a repository by running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:&lt;user&gt;/&lt;repository-name&gt;.git
+</pre></div>
+</div>
+<p>For example, clone the <a class="reference external" href="https://github.com/pyansys/pymapdl/">PyMAPDL</a>
+project with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:pyansys/pymapdl.git
+</pre></div>
+</div>
+</section>
+</section>
+<section id="installing-in-editable-mode">
+<h2>Installing in editable mode<a class="headerlink" href="#installing-in-editable-mode" title="Permalink to this headline">#</a></h2>
+<p>You can install a Python library in <em>editable mode</em>, which
+allows you to modify the source code and have these new changes
+reflected in your Python environment.</p>
+<p>To install a Python library in editable mode:</p>
+<ol class="arabic">
+<li><p>Ensure that you <a class="reference internal" href="setting-up.html#create"><span class="std std-ref">Create</span></a> and <a class="reference internal" href="setting-up.html#activate"><span class="std std-ref">Activate</span></a> a Python virtual environment,
+as explained in the <a class="reference internal" href="setting-up.html#virtual-environments"><span class="std std-ref">Virtual environments</span></a> section.</p></li>
+<li><p>Update <cite>pip</cite> with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install --upgrade pip
+</pre></div>
+</div>
+</li>
+<li><p>Install the library with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m pip install --editable .
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="creating-a-branch">
+<h2>Creating a branch<a class="headerlink" href="#creating-a-branch" title="Permalink to this headline">#</a></h2>
+<p>It is likely that the default branch name is <code class="docutils literal notranslate"><span class="pre">main</span></code> or <code class="docutils literal notranslate"><span class="pre">master</span></code>. This is the
+development branch for PyAnsys projects. For more information, see <a class="reference internal" href="releasing.html#branching-model"><span class="std std-ref">Branching model</span></a>.</p>
+<p>You must implement new contributions in a different branch and then merge
+these changes into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch by <a class="reference internal" href="#creating-a-pull-request"><span class="std std-ref">Creating a pull request</span></a>.</p>
+<p>You create a branch with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b &lt;new branch name&gt;
+</pre></div>
+</div>
+<section id="branch-naming-conventions">
+<h3>Branch naming conventions<a class="headerlink" href="#branch-naming-conventions" title="Permalink to this headline">#</a></h3>
+<p>The following requirements for naming branches helps to streamline
+development. They help core developers know what kind of
+changes any given branch is introducing before looking at the code.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fix/</span></code>: Bug fixes, patches, or experimental changes that are
+minor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feat/</span></code>: Changes that introduce a new feature or significant
+addition</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">junk/</span></code>: Experimental changes that can be deleted if they go
+stale</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maint/</span></code>: General maintenance of the repository or CI routines</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doc/</span></code>: Changes pertaining only to documentation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no-ci/</span></code>: Low-impact activity that should not trigger CI
+routines</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">testing/</span></code>: Improvements or changes to testing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">release/</span></code>: Releases (see below)</p></li>
+</ul>
+</section>
+</section>
+<section id="pushing-a-new-branch">
+<h2>Pushing a new branch<a class="headerlink" href="#pushing-a-new-branch" title="Permalink to this headline">#</a></h2>
+<p>Once you have implemented new changes and committed them, you push your
+branch, which uploads your changes to the repository. These changes are only
+visible in the branch that you just pushed.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push -u origin &lt;new branch name&gt;
+</pre></div>
+</div>
+</section>
+<section id="creating-a-pull-request">
+<h2>Creating a pull request<a class="headerlink" href="#creating-a-pull-request" title="Permalink to this headline">#</a></h2>
+<p>Once you have tested your branch locally, create a pull request (PR) and target your merge to
+<code class="docutils literal notranslate"><span class="pre">main</span></code>. This automatically runs CI testing and verifies that your changes
+work across all supported platforms. For procedural information, see <a class="reference external" href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">Creating a pull request</a>
+in the GitHub documentation.</p>
+<p>After you submit your PR, someone from the PyAnsys development team reviews
+your code to verify that it meets the <a class="reference internal" href="../packaging/index.html#packaging-style"><span class="std std-ref">Packaging style</span></a>, <a class="reference internal" href="../coding-style/index.html#coding-style"><span class="std std-ref">Coding style</span></a>, and <a class="reference internal" href="../doc-style/index.html#documentation-style"><span class="std std-ref">Documentation style</span></a>.</p>
+<p>Once your code is approved, if you have write permission, you can merge the PR
+and then delete the PR branch. If you don’t have write permission, the reviewer
+or someone else with write permission must merge your PR and then delete your PR branch.</p>
+<div class="admonition-always-delete-your-pr-branch-after-merging-it-into-the-main-branch admonition">
+<p class="admonition-title">Always delete your PR branch after merging it into the main branch.</p>
+<p>You can set up automatic deletion
+of branches in <strong>Settings -&gt; General -&gt; Pull Requests</strong>.</p>
+</div>
+</section>
+<section id="using-github-cli">
+<h2>Using GitHub CLI<a class="headerlink" href="#using-github-cli" title="Permalink to this headline">#</a></h2>
+<p>Because developers do not like leaving their terminals when working in projects,
+GitHub offers a <a class="reference external" href="https://cli.github.com/">command-line interface (CLI)</a>.</p>
+<p>This program allows you to interact with most of the features available in the
+web version of GitHub. For available commands, see the
+<a class="reference external" href="https://cli.github.com/manual/gh">official GitHub CLI manual</a>.</p>
+</section>
+</section>
+
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright (c) 2022 ANSYS, Inc. All rights reserved.<br>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
